@@ -16,16 +16,16 @@
      <%@ include file="../css/style.css"%>
     </style>
     <body>
-        <form class="formLogin">
+        <form class="formLogin" method="POST">
             <h4 class="loginTitle">Login</h3>
             <div class="padForm">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="loginSent" placeholder="Enter login">
+                  <input type="text" class="form-control" name="loginSent" placeholder="Enter login">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="passwordSent" placeholder="Enter Password">
+                  <input type="password" class="form-control" name="passwordSent" placeholder="Enter Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary" name="action" value="login">Login</button>
             </div>
         </form>
     </body>

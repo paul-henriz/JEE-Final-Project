@@ -13,15 +13,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import static m1se.project.Helpers.Constants.*;
+import m1se.project.Model.DBActions;
+import m1se.project.Model.User;
 
 /**
  *
  * @author paul-henrizimmerlin
  */
 public class Controller extends HttpServlet {
-
+    HttpSession session;
+    DBActions dba;
     InputStream input;
+    User userInput;
     String dbURL;
     String dbUser;
     String dbPassword;
@@ -37,18 +42,35 @@ public class Controller extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        session = request.getSession();
         Properties prop = new Properties();
         input = getServletContext().getResourceAsStream("/WEB-INF/db.properties");
         prop.load(input);
         dbURL = prop.getProperty("dbUrl");
         dbUser = prop.getProperty("dbUser");
         dbPassword = prop.getProperty("dbPwd");
-        // 
+        // If the form is empty
         if (request.getParameter("action") == null) {
             //User is connected
-            if (request.getSession().getAttribute("loginName") != null) {
-                
+            User connectedUser = (User) session.getAttribute("user");
+            if (connectedUser != null) {
+                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
             } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            }
+        }
+        else if(request.getParameter("action").equals("login")){
+            userInput = new User();
+            userInput.setLogin(request.getParameter(FRM_LOGIN_FIELD));
+            userInput.setPassword(request.getParameter(FRM_PWD_FIELD));
+            
+            dba = new DBActions(dbURL, dbUser, dbPassword);;
+            if(dba.validateCredentials(userInput)){
+                session.setAttribute("user", userInput);
+                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+            }
+            else{
+                request.setAttribute("errKey", ERR_MESSAGE);
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
         }
