@@ -26,3 +26,9 @@ and open the template in the editor.
 .padForm{
     padding: 10px;
 }
+
+.tSize {
+    width: 99%;
+    table-layout: fixed;
+    word-wrap:break-word;
+}

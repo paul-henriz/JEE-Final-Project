@@ -54,6 +54,7 @@ public class Controller extends HttpServlet {
             //User is connected
             User connectedUser = (User) session.getAttribute("user");
             if (connectedUser != null) {
+                request.setAttribute("employeesList", dba.getEmployees());
                 request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
@@ -67,6 +68,7 @@ public class Controller extends HttpServlet {
             dba = new DBActions(dbURL, dbUser, dbPassword);;
             if(dba.validateCredentials(userInput)){
                 session.setAttribute("user", userInput);
+                request.setAttribute("employeesList", dba.getEmployees());
                 request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
             }
             else{
