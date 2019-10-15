@@ -20,12 +20,12 @@ import static m1se.project.Helpers.Constants.*;
  * @author paul-henrizimmerlin
  */
 public class Controller extends HttpServlet {
-    
+
     InputStream input;
     String dbURL;
     String dbUser;
     String dbPassword;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,12 +38,21 @@ public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Properties prop = new Properties();
-        input = getServletContext().getResourceAsStream("WEB-INF/db.properties");
+        input = getServletContext().getResourceAsStream("/WEB-INF/db.properties");
         prop.load(input);
         dbURL = prop.getProperty("dbUrl");
         dbUser = prop.getProperty("dbUser");
         dbPassword = prop.getProperty("dbPwd");
-        request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+        // 
+        if (request.getParameter("action") == null) {
+            //User is connected
+            if (request.getSession().getAttribute("loginName") != null) {
+                
+            } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            }
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
