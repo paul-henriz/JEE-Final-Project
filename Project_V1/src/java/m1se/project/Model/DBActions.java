@@ -19,7 +19,6 @@ import static m1se.project.Helpers.Constants.*;
  */
 public class DBActions {
 
-    Boolean test = false;
     Connection conn;
     Statement stmt;
     ResultSet rs;
@@ -58,6 +57,7 @@ public class DBActions {
                 User u = new User();
                 u.setLogin(rs.getString("LOGIN"));
                 u.setPassword((rs.getString("PASSWORD")));
+                u.setIsAdmin(rs.getBoolean("ISADMIN"));
                 listUsers.add(u);
             }
         } catch (SQLException e) {
@@ -65,15 +65,15 @@ public class DBActions {
         }
         return listUsers;
     }
-//    
-//    public boolean validateCredentials(User input){
-//        boolean result = false;
-//        ArrayList<User> listUsers = getUser();
-//        for(User u : listUsers){
-//            if(u.getLogin().equals(input.getLogin()) && u.getPwd().equals(input.getPwd())) result = true;
-//        }
-//        return result;
-//    }
+    
+    public boolean validateCredentials(User input){
+        boolean result = false;
+        ArrayList<User> listUsers = getUser();
+        for(User u : listUsers){
+            if(u.getLogin().equals(input.getLogin()) && u.getPassword().equals(input.getPassword())) result = true;
+        }
+        return result;
+    }
 
     public ArrayList<Employee> getEmployees() {
         ArrayList<Employee> listEmployees = new ArrayList<>();
