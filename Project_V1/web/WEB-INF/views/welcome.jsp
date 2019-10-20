@@ -14,46 +14,45 @@
         <title>This is an HTML Table at your service!</title>
     </head>
     <style>
-     <%@ include file="../css/style.css"%>
+        <%@ include file="../css/style.css"%>
     </style>
     <body>
-                <form action="">
-        <table border = 1 class="table table-striped tSize">
-            <thead>
-              <tr>
-                <th scope="col">Sel</th>
-                <th scope="col">Name</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Home phone</th>
-                <th scope="col">Mobile phone</th>
-                <th scope="col">Office phone</th>
-                <th scope="col">Adress</th>
-                <th scope="col">Postal Code</th>
-                <th scope="col">City</th>
-                <th scope="col">Email</th>
-              </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${employeesList}" var="emp">
+        <form action="">
+            <table border = 1 class="table table-striped tSize">
+                <thead>
                     <tr>
-                    <th scope="row"><INPUT TYPE="radio" NAME='radios' VALUE="" ></th>
-                    <td>${emp.name}</td>
-                    <td>${emp.firstName}</td>
-                    <td>${emp.telHome}</td>
-                    <td>${emp.telMobile}</td>
-                    <td>${emp.telPro}</td>
-                    <td>${emp.address}</td>
-                    <td>${emp.zipCode}</td>
-                    <td>${emp.city}</td>
-                    <td>${emp.email}</td>
+                        <th scope="col">Sel</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Home phone</th>
+                        <th scope="col">Mobile phone</th>
+                        <th scope="col">Office phone</th>
+                        <th scope="col">Adress</th>
+                        <th scope="col">Postal Code</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Email</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-          </table>
-
-            <input class="btn btn-primary" type='submit' name="action" value="Detail"/>
-            <input class="btn btn-secondary" type='submit' name="action" value="Update"/>
-            <input class="btn btn-danger" type='submit' name="action" value="Delete"/>
+                </thead>
+                <tbody>
+                    <c:forEach items="${employeesList}" var="emp">
+                        <tr>
+                            <th scope="row"><input type="radio" name='id' value="${emp.id}" checked ></th>
+                            <td>${emp.name}</td>
+                            <td>${emp.firstName}</td>
+                            <td>${emp.telHome}</td>
+                            <td>${emp.telMobile}</td>
+                            <td>${emp.telPro}</td>
+                            <td>${emp.address}</td>
+                            <td>${emp.zipCode}</td>
+                            <td>${emp.city}</td>
+                            <td>${emp.email}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <button class="btn btn-primary" type='submit' name="action" value="delete">Delete</button>
+            <button class="btn btn-secondary" type='submit' name="action" value="details">Details</button>
+            <button class="btn btn-danger" type='submit' name="action" value="add">Add</button>
         </form>
     </body>
 </html>
