@@ -7,10 +7,13 @@ package m1se.project.Model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static m1se.project.Helpers.Constants.*;
 
 /**
@@ -22,6 +25,9 @@ public class DBActions {
     Connection conn;
     Statement stmt;
     ResultSet rs;
+    PreparedStatement ps;
+    ArrayList<User> listUsers;
+    ArrayList<Employee> listEmployees;
 
     public DBActions(String url, String user, String pwd) {
         try {
@@ -50,7 +56,7 @@ public class DBActions {
     }
 
     public ArrayList<User> getUser() {
-        ArrayList<User> listUsers = new ArrayList<>();
+        listUsers = new ArrayList<>();
         rs = getResultSet(getStatement(conn), SEL_QUERY_CREDENTIALS);
         try {
             while (rs.next()) {
@@ -68,7 +74,7 @@ public class DBActions {
     
     public boolean validateCredentials(User input){
         boolean result = false;
-        ArrayList<User> listUsers = getUser();
+        listUsers = getUser();
         for(User u : listUsers){
             if(u.getLogin().equals(input.getLogin()) && u.getPassword().equals(input.getPassword())) result = true;
         }
@@ -76,7 +82,7 @@ public class DBActions {
     }
 
     public ArrayList<Employee> getEmployees() {
-        ArrayList<Employee> listEmployees = new ArrayList<>();
+        listEmployees = new ArrayList<>();
         rs = getResultSet(getStatement(conn), SEL_QUERY_EMPLOYEES);
         try {
             while (rs.next()) {
@@ -97,5 +103,31 @@ public class DBActions {
             System.out.println(e.getMessage());
         }
         return listEmployees;
+    }
+    public Employee getEmployeeByID(String id) {
+        try {
+            ps = conn.prepareStatement(SEL_QUERY_EMPLOYEE_BY_ID);
+            ps.setInt(1, Integer.parseInt(id));
+            ps.executeQuery();
+            rs = ps.getResultSet();
+            while(rs.next()){
+                Employee e = new Employee();
+                e.setId(rs.getInt("ID"));
+                e.setName(rs.getString("NAME"));
+                e.setFirstName(rs.getString("FIRSTNAME"));
+                e.setTelHome(rs.getString("TELHOME"));
+                e.setTelMobile(rs.getString("TELMOB"));
+                e.setTelPro(rs.getString("TELPRO"));
+                e.setAddress(rs.getString("ADRESS"));
+                e.setZipCode(rs.getString("POSTALCODE"));
+                e.setCity(rs.getString("CITY"));
+                e.setEmail(rs.getString("EMAIL"));
+                return e;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
