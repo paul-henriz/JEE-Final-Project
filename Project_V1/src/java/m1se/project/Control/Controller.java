@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import static m1se.project.Helpers.Constants.*;
 import m1se.project.Model.DBActions;
+import m1se.project.Model.Employee;
 import m1se.project.Model.User;
 
 /**
@@ -32,6 +33,7 @@ public class Controller extends HttpServlet {
     String dbURL;
     String dbUser;
     String dbPassword;
+    Employee selectedEmployee;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,17 +53,18 @@ public class Controller extends HttpServlet {
         dbURL = prop.getProperty("dbUrl");
         dbUser = prop.getProperty("dbUser");
         dbPassword = prop.getProperty("dbPwd");
+        currentUser = (User) session.getAttribute("user");
         // If the form is empty
+
         if (request.getParameter("action") == null) {
             //User is connected
-            currentUser = (User) session.getAttribute("user");
             if (currentUser != null) {
                 request.setAttribute("employeesList", dba.getEmployees());
                 request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        } else if (request.getParameter("action").equals("login")) {
+        } else if (request.getParameter("action").equals(FRM_ACTION_LOGIN)) {
             if (request.getParameter(FRM_LOGIN_FIELD).isEmpty() || request.getParameter(FRM_PWD_FIELD).isEmpty()) {
                     request.setAttribute("errKey", ERR_MESSAGE_MISSING);
                     request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
@@ -70,7 +73,7 @@ public class Controller extends HttpServlet {
                 currentUser.setLogin(request.getParameter(FRM_LOGIN_FIELD));
                 currentUser.setPassword(request.getParameter(FRM_PWD_FIELD));
 
-                dba = new DBActions(dbURL, dbUser, dbPassword);;
+                dba = new DBActions(dbURL, dbUser, dbPassword);
                 if (dba.validateCredentials(currentUser)) {
                     session.setAttribute("user", currentUser);
                     request.setAttribute("employeesList", dba.getEmployees());
@@ -79,6 +82,21 @@ public class Controller extends HttpServlet {
                     request.setAttribute("errKey", ERR_MESSAGE_INVALID);
                     request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
                 }
+            }
+        } else if (request.getParameter("action").equals(FRM_ACTION_DETAIL)) {
+            if (currentUser != null) {
+                dba = new DBActions(dbURL, dbUser, dbPassword);
+                selectedEmployee = dba.getEmployeeByID(request.getParameter(FRM_ID_FIELD));
+                if(selectedEmployee != null){
+                    request.setAttribute("emp", selectedEmployee);
+                    request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
+                }
+                else{
+                    request.setAttribute("errKey", ERR_MESSAGE_NOT_FOUND);
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                }
+            } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
         }
 
