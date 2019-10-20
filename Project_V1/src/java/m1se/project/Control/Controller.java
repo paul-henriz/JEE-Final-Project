@@ -27,7 +27,8 @@ public class Controller extends HttpServlet {
     HttpSession session;
     DBActions dba;
     InputStream input;
-    User userInput;
+    User currentUser;
+    Properties prop;
     String dbURL;
     String dbUser;
     String dbPassword;
@@ -44,7 +45,7 @@ public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         session = request.getSession();
-        Properties prop = new Properties();
+        prop = new Properties();
         input = getServletContext().getResourceAsStream("/WEB-INF/db.properties");
         prop.load(input);
         dbURL = prop.getProperty("dbUrl");
@@ -53,8 +54,8 @@ public class Controller extends HttpServlet {
         // If the form is empty
         if (request.getParameter("action") == null) {
             //User is connected
-            User connectedUser = (User) session.getAttribute("user");
-            if (connectedUser != null) {
+            currentUser = (User) session.getAttribute("user");
+            if (currentUser != null) {
                 request.setAttribute("employeesList", dba.getEmployees());
                 request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
             } else {
@@ -65,13 +66,13 @@ public class Controller extends HttpServlet {
                     request.setAttribute("errKey", ERR_MESSAGE_MISSING);
                     request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             } else {
-                userInput = new User();
-                userInput.setLogin(request.getParameter(FRM_LOGIN_FIELD));
-                userInput.setPassword(request.getParameter(FRM_PWD_FIELD));
+                currentUser = new User();
+                currentUser.setLogin(request.getParameter(FRM_LOGIN_FIELD));
+                currentUser.setPassword(request.getParameter(FRM_PWD_FIELD));
 
                 dba = new DBActions(dbURL, dbUser, dbPassword);;
-                if (dba.validateCredentials(userInput)) {
-                    session.setAttribute("user", userInput);
+                if (dba.validateCredentials(currentUser)) {
+                    session.setAttribute("user", currentUser);
                     request.setAttribute("employeesList", dba.getEmployees());
                     request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                 } else {
@@ -79,7 +80,6 @@ public class Controller extends HttpServlet {
                     request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
                 }
             }
-
         }
 
     }
