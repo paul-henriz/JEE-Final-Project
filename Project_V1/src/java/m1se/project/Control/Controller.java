@@ -23,6 +23,7 @@ import m1se.project.Model.User;
  * @author paul-henrizimmerlin
  */
 public class Controller extends HttpServlet {
+
     HttpSession session;
     DBActions dba;
     InputStream input;
@@ -59,22 +60,26 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        }
-        else if(request.getParameter("action").equals("login")){
-            userInput = new User();
-            userInput.setLogin(request.getParameter(FRM_LOGIN_FIELD));
-            userInput.setPassword(request.getParameter(FRM_PWD_FIELD));
-            
-            dba = new DBActions(dbURL, dbUser, dbPassword);;
-            if(dba.validateCredentials(userInput)){
-                session.setAttribute("user", userInput);
-                request.setAttribute("employeesList", dba.getEmployees());
-                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+        } else if (request.getParameter("action").equals("login")) {
+            if (request.getParameter(FRM_LOGIN_FIELD).isEmpty() || request.getParameter(FRM_PWD_FIELD).isEmpty()) {
+                    request.setAttribute("errKey", ERR_MESSAGE_MISSING);
+                    request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            } else {
+                userInput = new User();
+                userInput.setLogin(request.getParameter(FRM_LOGIN_FIELD));
+                userInput.setPassword(request.getParameter(FRM_PWD_FIELD));
+
+                dba = new DBActions(dbURL, dbUser, dbPassword);;
+                if (dba.validateCredentials(userInput)) {
+                    session.setAttribute("user", userInput);
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                } else {
+                    request.setAttribute("errKey", ERR_MESSAGE_INVALID);
+                    request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+                }
             }
-            else{
-                request.setAttribute("errKey", ERR_MESSAGE);
-                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
-            }
+
         }
 
     }
