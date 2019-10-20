@@ -17,7 +17,7 @@
     </style>
     <body>
         <form class="formLogin" method="POST">
-            <h4 class="loginTitle">Login</h3>
+            <h4 class="loginTitle">Login</h4>
             <div class="padForm">
                 <div class="form-group">
                   <input type="text" class="form-control" name="loginSent" placeholder="Enter login">
