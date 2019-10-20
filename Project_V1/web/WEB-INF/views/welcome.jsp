@@ -17,7 +17,7 @@
         <%@ include file="../css/style.css"%>
     </style>
     <body>
-        <form action="">
+        <form method="GET">
             <table border = 1 class="table table-striped tSize">
                 <thead>
                     <tr>
@@ -36,7 +36,7 @@
                 <tbody>
                     <c:forEach items="${employeesList}" var="emp">
                         <tr>
-                            <th scope="row"><input type="radio" name='id' value="${emp.id}" checked ></th>
+                            <th scope="row"><input type="radio" name="id" value="${emp.id}" checked ></th>
                             <td>${emp.name}</td>
                             <td>${emp.firstName}</td>
                             <td>${emp.telHome}</td>
