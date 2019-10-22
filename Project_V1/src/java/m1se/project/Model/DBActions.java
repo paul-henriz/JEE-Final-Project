@@ -156,4 +156,22 @@ public class DBActions {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void updateEmployee(Employee emp){
+        try {
+            ps = conn.prepareStatement(UPD_QUERY_EMPLOYEE_BY_ID);
+            ps.setString(1, emp.getName());
+            ps.setString(2, emp.getFirstName());
+            ps.setString(3, emp.getTelHome());
+            ps.setString(4, emp.getTelMobile());
+            ps.setString(5, emp.getTelPro());
+            ps.setString(6, emp.getAddress());
+            ps.setString(7, emp.getZipCode());
+            ps.setString(8, emp.getCity());
+            ps.setString(9, emp.getEmail());
+            ps.setInt(10, emp.getId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
