@@ -66,8 +66,8 @@ public class Controller extends HttpServlet {
             }
         } else if (request.getParameter("action").equals(FRM_ACTION_LOGIN)) {
             if (request.getParameter(FRM_LOGIN_FIELD).isEmpty() || request.getParameter(FRM_PWD_FIELD).isEmpty()) {
-                    request.setAttribute("errKey", ERR_MESSAGE_MISSING);
-                    request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+                request.setAttribute("errKey", ERR_MESSAGE_MISSING);
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             } else {
                 currentUser = new User();
                 currentUser.setLogin(request.getParameter(FRM_LOGIN_FIELD));
@@ -87,11 +87,10 @@ public class Controller extends HttpServlet {
             if (currentUser != null) {
                 dba = new DBActions(dbURL, dbUser, dbPassword);
                 selectedEmployee = dba.getEmployeeByID(request.getParameter(FRM_ID_FIELD));
-                if(selectedEmployee != null){
+                if (selectedEmployee != null) {
                     request.setAttribute("emp", selectedEmployee);
                     request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
-                }
-                else{
+                } else {
                     request.setAttribute("errKey", ERR_MESSAGE_NOT_FOUND);
                     request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                 }
@@ -100,17 +99,27 @@ public class Controller extends HttpServlet {
             }
         } else if (request.getParameter("action").equals(FRM_ACTION_DELETE)) {
             if (currentUser != null) {
-                dba = new DBActions(dbURL, dbUser, dbPassword);
-                dba.deleteEmployeeByID(request.getParameter(FRM_ID_FIELD));
-                request.setAttribute("employeesList", dba.getEmployees());
-                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                if (currentUser.getIsAdmin()) {
+                    dba = new DBActions(dbURL, dbUser, dbPassword);
+                    dba.deleteEmployeeByID(request.getParameter(FRM_ID_FIELD));
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                } else {
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                }
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
         } else if (request.getParameter("action").equals(FRM_ACTION_ADD)) {
             if (currentUser != null) {
-                dba = new DBActions(dbURL, dbUser, dbPassword);
-                request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
+                if (currentUser.getIsAdmin()) {
+                    dba = new DBActions(dbURL, dbUser, dbPassword);
+                    request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
+                } else {
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                }
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
