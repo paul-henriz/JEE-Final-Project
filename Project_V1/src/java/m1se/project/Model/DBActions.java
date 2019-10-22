@@ -71,12 +71,14 @@ public class DBActions {
         }
         return listUsers;
     }
-    
-    public boolean validateCredentials(User input){
+
+    public boolean validateCredentials(User input) {
         boolean result = false;
         listUsers = getUser();
-        for(User u : listUsers){
-            if(u.getLogin().equals(input.getLogin()) && u.getPassword().equals(input.getPassword())) result = true;
+        for (User u : listUsers) {
+            if (u.getLogin().equals(input.getLogin()) && u.getPassword().equals(input.getPassword())) {
+                result = true;
+            }
         }
         return result;
     }
@@ -104,13 +106,14 @@ public class DBActions {
         }
         return listEmployees;
     }
+
     public Employee getEmployeeByID(String id) {
         try {
             ps = conn.prepareStatement(SEL_QUERY_EMPLOYEE_BY_ID);
             ps.setInt(1, Integer.parseInt(id));
             ps.executeQuery();
             rs = ps.getResultSet();
-            while(rs.next()){
+            while (rs.next()) {
                 Employee e = new Employee();
                 e.setId(rs.getInt("ID"));
                 e.setName(rs.getString("NAME"));
@@ -124,13 +127,14 @@ public class DBActions {
                 e.setEmail(rs.getString("EMAIL"));
                 return e;
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    public void deleteEmployeeByID(String id){
+
+    public void deleteEmployeeByID(String id) {
         try {
             ps = conn.prepareStatement(DEL_QUERY_EMPLOYEE_BY_ID);
             ps.setInt(1, Integer.parseInt(id));
@@ -139,36 +143,33 @@ public class DBActions {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void addEmployee(Employee emp){
+
+    public void fillEmployee(Employee emp, PreparedStatement prepStat) throws SQLException {
+        prepStat.setString(1, emp.getName());
+        prepStat.setString(2, emp.getFirstName());
+        prepStat.setString(3, emp.getTelHome());
+        prepStat.setString(4, emp.getTelMobile());
+        prepStat.setString(5, emp.getTelPro());
+        prepStat.setString(6, emp.getAddress());
+        prepStat.setString(7, emp.getZipCode());
+        prepStat.setString(8, emp.getCity());
+        prepStat.setString(9, emp.getEmail());
+    }
+    
+    public void addEmployee(Employee emp) {
         try {
             ps = conn.prepareStatement(INS_QUERY_EMPLOYEE);
-            ps.setString(1, emp.getName());
-            ps.setString(2, emp.getFirstName());
-            ps.setString(3, emp.getTelHome());
-            ps.setString(4, emp.getTelMobile());
-            ps.setString(5, emp.getTelPro());
-            ps.setString(6, emp.getAddress());
-            ps.setString(7, emp.getZipCode());
-            ps.setString(8, emp.getCity());
-            ps.setString(9, emp.getEmail());
+            fillEmployee(emp, ps);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void updateEmployee(Employee emp){
+
+    public void updateEmployee(Employee emp) {
         try {
             ps = conn.prepareStatement(UPD_QUERY_EMPLOYEE_BY_ID);
-            ps.setString(1, emp.getName());
-            ps.setString(2, emp.getFirstName());
-            ps.setString(3, emp.getTelHome());
-            ps.setString(4, emp.getTelMobile());
-            ps.setString(5, emp.getTelPro());
-            ps.setString(6, emp.getAddress());
-            ps.setString(7, emp.getZipCode());
-            ps.setString(8, emp.getCity());
-            ps.setString(9, emp.getEmail());
-            ps.setInt(10, emp.getId());
+            fillEmployee(emp, ps);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
