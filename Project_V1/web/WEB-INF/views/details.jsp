@@ -35,53 +35,55 @@
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" value="${emp.name}">
+                    <input type="text" class="form-control" id="nom" value="${emp.name}" name="name">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="prenom" class="col-sm-2 col-form-label">Prénom</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="prenom" value="${emp.firstName}">
+                    <input type="text" class="form-control" id="prenom" value="${emp.firstName}" name="firstname">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="teldom" class="col-sm-2 col-form-label">Tel Dom</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="teldom" value="${emp.telHome}">
+                  <input type="text" class="form-control" id="teldom" value="${emp.telHome}" name="teldom">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telpro" class="col-sm-2 col-form-label">Tel Pro</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="telpro" value="${emp.telPro}">
+                  <input type="text" class="form-control" id="telpro" value="${emp.telPro}" name="telpro">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telmob" class="col-sm-2 col-form-label">Tel Mob</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="telmob" value="${emp.telMobile}">
+                  <input type="text" class="form-control" id="telmob" value="${emp.telMobile}" name="telmob">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="adresse" class="col-sm-2 col-form-label">Adresse</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="adresse" value="${emp.address}">
+                  <input type="text" class="form-control" id="adresse" value="${emp.address}" name="address">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="zip" class="col-sm-2 col-form-label">Code Postal</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="zip" value="${emp.zipCode}">
+                  <input type="text" class="form-control" id="zip" value="${emp.zipCode}" name="zip">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ville" class="col-sm-2 col-form-label">Ville</label>
-                <div class="form-inline">
-                  <input type="text" class="form-control" id="ville" value="${emp.city}">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ville" value="${emp.city}" name="city">
                 </div>
+            </div>
+            <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
-                <div class="form-inline">
-                  <input type="text" class="form-control" id="email" value="${emp.email}">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" value="${emp.email}" name="email">
                 </div>
             </div>
             <button class="btn btn-secondary float-right" type='submit' name="action" value="cancel">Cancel</button>
