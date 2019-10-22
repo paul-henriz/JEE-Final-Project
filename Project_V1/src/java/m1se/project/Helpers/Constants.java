@@ -25,9 +25,22 @@ public class Constants {
     public static final String JSP_EXIT_PAGE = "";
     public static final String FRM_LOGIN_FIELD = "loginSent";
     public static final String FRM_PWD_FIELD = "passwordSent";
+    
+    public static final String FRM_NAME_FIELD = "name";
+    public static final String FRM_FIRSTNAME_FIELD = "firstname";
+    public static final String FRM_TELPRO_FIELD = "telpro";
+    public static final String FRM_TELMOB_FIELD = "telmob";
+    public static final String FRM_TELDOM_FIELD = "teldom";
+    public static final String FRM_ADDRESS_FIELD = "address";
+    public static final String FRM_CITY_FIELD = "city";
+    public static final String FRM_ZIP_FIELD = "zip";
+    public static final String FRM_EMAIL_FIELD = "email";
+    
     public static final String FRM_ACTION_LOGIN = "login";
     public static final String FRM_ID_FIELD = "id";
     public static final String FRM_ACTION_DELETE = "delete";
     public static final String FRM_ACTION_DETAIL = "details";
     public static final String FRM_ACTION_ADD = "add";
+    public static final String FRM_ACTION_SAVE = "save";
+    public static final String FRM_ACTION_CANCEL = "cancel";
 }
