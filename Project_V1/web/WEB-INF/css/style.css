@@ -32,3 +32,22 @@ and open the template in the editor.
     table-layout: fixed;
     word-wrap:break-word;
 }
+
+.detailForm{
+    /*border: 1px solid black;*/
+    border-radius: 20px;
+    padding: 30px;
+    width : 75%;
+    position: absolute; /* postulat de départ */
+    top: 50%; left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
+}
+
+.detailForm > h3{
+    padding-bottom:7px;
+    text-align: center;
+}
+
+.detailForm>button{
+    margin: 10px;
+}
