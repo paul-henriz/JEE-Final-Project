@@ -77,6 +77,7 @@ public class DBActions {
         listUsers = getUser();
         for (User u : listUsers) {
             if (u.getLogin().equals(input.getLogin()) && u.getPassword().equals(input.getPassword())) {
+                input.setIsAdmin(u.getIsAdmin());
                 result = true;
             }
         }
