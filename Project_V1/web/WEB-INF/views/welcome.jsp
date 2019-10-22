@@ -26,9 +26,9 @@
             <h1 class="navbar-brand "><%=u.getLogin()%></h1>
             <a href="" class="logout"><i class="fas fa-power-off"></i></a>
         </nav>
-        <form method="GET">
-            <div class="tabCenter">
+        
         <form method="POST" action="Controller">
+            <div class="tabCenter">
             <table border = 1 class="table table-striped tSize">
                 <thead>
                     <tr>

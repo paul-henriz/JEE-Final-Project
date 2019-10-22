@@ -30,7 +30,7 @@
                 Employee em = (Employee) request.getAttribute("emp");
                 if (em!=null) {
             %>
-            <h3>${emp.firstName} ${emp.name}</h3>
+            <h3><%=em.getFirstName()%> <%=em.getName()%></h3>
             <%
                 } else {
             %>
@@ -42,55 +42,55 @@
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" value="${emp.name}" name="name">
+                    <input type="text" class="form-control" id="nom" value="<%if(em!=null) {em.getName();}%>" name="name">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="prenom" class="col-sm-2 col-form-label">Prénom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="prenom" value="${emp.firstName}" name="firstname">
+                    <input type="text" class="form-control" id="prenom" value="<%if(em!=null) {em.getName();}%>" name="firstname">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="teldom" class="col-sm-2 col-form-label">Tel Dom</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="teldom" value="${emp.telHome}" name="teldom">
+                  <input type="text" class="form-control" id="teldom" value="<%if(em!=null) {em.getName();}%>" name="teldom">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telpro" class="col-sm-2 col-form-label">Tel Pro</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="telpro" value="${emp.telPro}" name="telpro">
+                  <input type="text" class="form-control" id="telpro" value="<%if(em!=null) {em.getName();}%>" name="telpro">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telmob" class="col-sm-2 col-form-label">Tel Mob</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="telmob" value="${emp.telMobile}" name="telmob">
+                  <input type="text" class="form-control" id="telmob" value="<%if(em!=null) {em.getName();}%>" name="telmob">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="adresse" class="col-sm-2 col-form-label">Adresse</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="adresse" value="${emp.address}" name="address">
+                  <input type="text" class="form-control" id="adresse" value="<%if(em!=null) {em.getName();}%>" name="address">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="zip" class="col-sm-2 col-form-label">Code Postal</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="zip" value="${emp.zipCode}" name="zip">
+                  <input type="text" class="form-control" id="zip" value="<%if(em!=null) {em.getName();}%>" name="zip">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ville" class="col-sm-2 col-form-label">Ville</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ville" value="${emp.city}" name="city">
+                    <input type="text" class="form-control" id="ville" value="<%if(em!=null) {em.getName();}%>" name="city">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" value="${emp.email}" name="email">
+                    <input type="text" class="form-control" id="email" value="<%if(em!=null) {em.getName();}%>" name="email">
                 </div>
             </div>
             <button class="btn btn-secondary float-right" type='submit' name="action" value="cancel">Cancel</button>
