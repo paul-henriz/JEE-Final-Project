@@ -55,7 +55,6 @@ public class Controller extends HttpServlet {
         dbPassword = prop.getProperty("dbPwd");
         currentUser = (User) session.getAttribute("user");
         // If the form is empty
-
         if (request.getParameter("action") == null) {
             //User is connected
             if (currentUser != null) {
