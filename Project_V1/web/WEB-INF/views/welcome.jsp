@@ -17,7 +17,7 @@
         <%@ include file="../css/style.css"%>
     </style>
     <body>
-        <form method="GET">
+        <form method="POST" action="Controller">
             <table border = 1 class="table table-striped tSize">
                 <thead>
                     <tr>
