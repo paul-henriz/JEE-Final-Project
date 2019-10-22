@@ -98,6 +98,22 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
+        } else if (request.getParameter("action").equals(FRM_ACTION_DELETE)) {
+            if (currentUser != null) {
+                dba = new DBActions(dbURL, dbUser, dbPassword);
+                dba.deleteEmployeeByID(request.getParameter(FRM_ID_FIELD));
+                request.setAttribute("employeesList", dba.getEmployees());
+                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+            } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            }
+        } else if (request.getParameter("action").equals(FRM_ACTION_ADD)) {
+            if (currentUser != null) {
+                dba = new DBActions(dbURL, dbUser, dbPassword);
+                request.getRequestDispatcher(JSP_DETAIL_PAGE).forward(request, response);
+            } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            }
         }
 
     }

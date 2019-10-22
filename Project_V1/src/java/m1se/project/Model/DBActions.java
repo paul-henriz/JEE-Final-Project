@@ -130,4 +130,13 @@ public class DBActions {
         }
         return null;
     }
+    public void deleteEmployeeByID(String id){
+        try {
+            ps = conn.prepareStatement(DEL_QUERY_EMPLOYEE_BY_ID);
+            ps.setInt(1, Integer.parseInt(id));
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

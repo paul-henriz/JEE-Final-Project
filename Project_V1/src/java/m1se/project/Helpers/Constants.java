@@ -12,7 +12,8 @@ package m1se.project.Helpers;
 public class Constants {
     public static final String SEL_QUERY_CREDENTIALS = "SELECT * FROM Credentials";
     public static final String SEL_QUERY_EMPLOYEES = "SELECT * FROM Employees";
-    public static final String SEL_QUERY_EMPLOYEE_BY_ID = "SELECT * FROM Employees WHERE ID=?";
+    public static final String SEL_QUERY_EMPLOYEE_BY_ID = "SELECT * FROM Employees WHERE ID = ?";
+    public static final String DEL_QUERY_EMPLOYEE_BY_ID = "DELETE FROM Employees WHERE ID = ?";
     public static final String ERR_MESSAGE_INVALID= "Connection failed! Verify your login/password and try again.";
     public static final String ERR_MESSAGE_MISSING= "You must enter values in both fields.";
     public static final String ERR_MESSAGE_NOT_FOUND = "The selected employee was not found in the database.";
