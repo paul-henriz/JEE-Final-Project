@@ -14,6 +14,8 @@ public class Constants {
     public static final String SEL_QUERY_EMPLOYEES = "SELECT * FROM Employees";
     public static final String SEL_QUERY_EMPLOYEE_BY_ID = "SELECT * FROM Employees WHERE ID = ?";
     public static final String DEL_QUERY_EMPLOYEE_BY_ID = "DELETE FROM Employees WHERE ID = ?";
+    public static final String INS_QUERY_EMPLOYEE = "INSERT INTO Employees (NAME, FIRSTNAME, TELHOME, TELMOB, TELPRO, ADRESS, POSTALCODE, CITY, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public static final String UPD_QUERY_EMPLOYEE_BY_ID = "UPDATE Employees SET NAME = ?, FIRSTNAME = ?, TELHOME = ?, TELMOB = ?, TELPRO = ?, ADRESS = ?, POSTALCODE = ?, CITY = ?, EMAIL = ? WHERE ID = ?";
     public static final String ERR_MESSAGE_INVALID= "Connection failed! Verify your login/password and try again.";
     public static final String ERR_MESSAGE_MISSING= "You must enter values in both fields.";
     public static final String ERR_MESSAGE_NOT_FOUND = "The selected employee was not found in the database.";
