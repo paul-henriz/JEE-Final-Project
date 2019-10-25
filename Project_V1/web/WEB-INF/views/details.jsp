@@ -27,6 +27,8 @@
         </nav>
             <form class="detailForm" method="POST" action="Controller">
             <%
+                String isDisabled = "disabled";
+                if(u.getIsAdmin()) isDisabled = "";
                 Boolean create = false;
                 Employee em = (Employee) request.getAttribute("emp");
                 if (em!=null) {
@@ -47,55 +49,55 @@
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" value="<%=em.getName()%>" name="name" required>
+                    <input type="text" class="form-control" id="nom" value="<%if(em.getName()!=null){%><%=em.getName()%><%}%>" name="name" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="prenom" class="col-sm-2 col-form-label">Prénom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="prenom" value="<%=em.getFirstName()%>" name="firstname" required>
+                    <input type="text" class="form-control" id="prenom" value="<%if(em.getFirstName()!=null){%><%=em.getFirstName()%><%}%>" name="firstname" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="teldom" class="col-sm-2 col-form-label">Tel Dom</label>
                 <div class="col-sm-10">
-                  <input type="tel" class="form-control" id="teldom" value="<%=em.getTelHome()%>" name="teldom" required>
+                  <input type="tel" class="form-control" id="teldom" value="<%if(em.getTelHome()!=null){%><%=em.getTelHome()%><%}%>" name="teldom" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telpro" class="col-sm-2 col-form-label">Tel Pro</label>
                 <div class="col-sm-10">
-                  <input type="tel" class="form-control" id="telpro" value="<%=em.getTelPro()%>" name="telpro" required>
+                  <input type="tel" class="form-control" id="telpro" value="<%if(em.getTelPro()!=null){%><%=em.getTelPro()%><%}%>" name="telpro" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telmob" class="col-sm-2 col-form-label">Tel Mob</label>
                 <div class="col-sm-10">
-                    <input type="tel" class="form-control" id="telmob" value="<%=em.getTelMobile()%>" name="telmob" required>
+                    <input type="tel" class="form-control" id="telmob" value="<%if(em.getTelMobile()!=null){%><%=em.getTelMobile()%><%}%>" name="telmob" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="adresse" class="col-sm-2 col-form-label">Adresse</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="adresse" value="<%=em.getAddress()%>" name="address" required>
+                  <input type="text" class="form-control" id="adresse" value="<%if(em.getAddress()!=null){%><%=em.getAddress()%><%}%>" name="address" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="zip" class="col-sm-2 col-form-label">Code Postal</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="zip" value="<%=em.getZipCode()%>" name="zip" required>
+                  <input type="text" class="form-control" id="zip" value="<%if(em.getZipCode()!=null){%><%=em.getZipCode()%><%}%>" name="zip" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ville" class="col-sm-2 col-form-label">Ville</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ville" value="<%=em.getCity()%>" name="city" required>
+                    <input type="text" class="form-control" id="ville" value="<%if(em.getCity()!=null){%><%=em.getCity()%><%}%>" name="city" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" value="<%=em.getEmail()%>" name="email" required>
+                    <input type="email" class="form-control" id="email" value="<%if(em.getEmail()!=null){%><%=em.getEmail()%><%}%>" name="email" <%=isDisabled %> required>
                 </div>
             </div>
             <button class="btn btn-secondary float-right" type='submit' name="action" value="cancel">Cancel</button>
