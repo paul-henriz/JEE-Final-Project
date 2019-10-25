@@ -16,13 +16,13 @@ IDE used to develop: NetBeans 8.1/8.2
     - [x] There are 2 categories of users :
       - [x] Users with admin rights => login : admin password : admin
       - [x] Regular employees => login : empl & password : empl
-    - [ ] Users logged in as employees cannot delete, modifiy or add
-    - [ ] Users with admin rights can do any action
+    - [x] Users logged in as employees cannot delete, modifiy or add
+    - [x] Users with admin rights can do any action
     - [x] Manage the user's session : the "login" action opens a standard Web session
-    - [ ] On the upper right of each page (except 2 pages…) you’ll show :
+    - [x] On the upper right of each page (except 2 pages…) you’ll show :
       - [ ] "Hello <user> ! Your session is active"
-      - [ ] An icon that allows the user to logout (leave the session)
-      - [ ] Create a "Goodbye" page
+      - [x] An icon that allows the user to logout (leave the session)
+      - [x] Create a "Goodbye" page
       
 2. Architecture & code structure roadmap :
     - [x] Loose coupling
