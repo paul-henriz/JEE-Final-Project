@@ -22,7 +22,7 @@
     <body>
         <nav class="navbar fixed-top navbar-dark bg-dark">
             <% User u = (User) request.getSession().getAttribute("user");%>
-            <h1 class="navbar-brand "><%=u.getLogin()%></h1>
+            <h1 class="navbar-brand ">Hello <b><%=u.getLogin()%></b> ! Your session is active</h1>
             <a href="?action=logout" class="logout"><i class="fas fa-power-off"></i></a>
         </nav>
             <form class="detailForm" method="POST" action="Controller">

@@ -22,8 +22,11 @@
     </style>
     <body>
         <nav class="navbar fixed-top navbar-dark bg-dark">
-            <% User u = (User) request.getSession().getAttribute("user");%>
-            <h1 class="navbar-brand "><%=u.getLogin()%></h1>
+            <% User u = (User) request.getSession().getAttribute("user");
+            String isDisabled = "disabled";
+            if(u.getIsAdmin()) isDisabled = "";
+            %>
+            <h1 class="navbar-brand ">Hello <b><%=u.getLogin()%></b> ! Your session is active</h1>
             <a href="?action=logout" class="logout"><i class="fas fa-power-off"></i></a>
         </nav>
         
@@ -64,10 +67,9 @@
                     <%}%>
                 </tbody>
                 </table>
-                    <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
+                    <button class="btn btn-primary float-right" type='submit' name="action" value="delete" <%=isDisabled%>>Delete</button>
                 <button class="btn btn-secondary float-right" type='submit' name="action" value="details">Details</button>
-                <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
+                <button class="btn btn-danger float-right" type='submit' name="action" value="add" <%=isDisabled%>>Add</button>
             </div>
-        </form>
     </body>
 </html>
