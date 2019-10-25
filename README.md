@@ -20,7 +20,7 @@ IDE used to develop: NetBeans 8.1/8.2
     - [x] Users with admin rights can do any action
     - [x] Manage the user's session : the "login" action opens a standard Web session
     - [x] On the upper right of each page (except 2 pages…) you’ll show :
-      - [ ] "Hello <user> ! Your session is active"
+      - [X] "Hello <user> ! Your session is active"
       - [x] An icon that allows the user to logout (leave the session)
       - [x] Create a "Goodbye" page
       
@@ -30,7 +30,7 @@ IDE used to develop: NetBeans 8.1/8.2
     - [x] MVC compliant (at least for V1 & V2)
     - [x] Unique servlet
     - [x] Entry point = servlet
-    - [ ] Variables : Declaration => global / Initialization => local
+    - [x] Variables : Declaration => global / Initialization => local
     - [ ] Elegant and efficient management of exceptions
     
 3. Documentation :
@@ -44,7 +44,7 @@ IDE used to develop: NetBeans 8.1/8.2
 
 ### Version 1
 
-- [ ] JSP (scriptlets accepted) + Java Beans + Servlet + JDBC
+- [x] JSP (scriptlets accepted) + Java Beans + Servlet + JDBC
 - [x] .properties file to store information about the database
 - [x] SQL script in /WEB-INF
 - [x] All the JSPs in /WEB-INF
