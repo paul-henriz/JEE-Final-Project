@@ -100,7 +100,9 @@
                     <input type="email" class="form-control" id="email" value="<%if(em.getEmail()!=null){%><%=em.getEmail()%><%}%>" name="email" <%=isDisabled %> required>
                 </div>
             </div>
-            <button class="btn btn-secondary float-right" type='submit' name="action" value="cancel">Cancel</button>
+            <a href="Controller" class="cancel">
+                <button class="btn btn-secondary float-right" type='button' name="action" value="cancel">Cancel</button>
+            </a>
             <%
                 if (create == false) {
             %>
