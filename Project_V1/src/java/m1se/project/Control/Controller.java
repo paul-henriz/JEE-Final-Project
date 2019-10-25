@@ -45,33 +45,44 @@ public class Controller extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Retrieve session of the user
         session = request.getSession();
+        
+        // Read database properties
         prop = new Properties();
         input = getServletContext().getResourceAsStream("/WEB-INF/db.properties");
         prop.load(input);
         dbURL = prop.getProperty("dbUrl");
         dbUser = prop.getProperty("dbUser");
         dbPassword = prop.getProperty("dbPwd");
+        
+        // Retrieve user from the session
         currentUser = (User) session.getAttribute("user");
+        
         // If the form is empty
         if (request.getParameter("action") == null) {
-            //User is connected
+            //If user is connected
             if (currentUser != null) {
                 request.setAttribute("employeesList", dba.getEmployees());
                 request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        } else if (request.getParameter("action").equals(FRM_ACTION_LOGIN)) {
+        } 
+        // If the use try to connect
+        else if (request.getParameter("action").equals(FRM_ACTION_LOGIN)) {
             if (request.getParameter(FRM_LOGIN_FIELD).isEmpty() || request.getParameter(FRM_PWD_FIELD).isEmpty()) {
                 request.setAttribute("errKey", ERR_MESSAGE_MISSING);
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             } else {
+                // If the form is properly filled 
                 currentUser = new User();
                 currentUser.setLogin(request.getParameter(FRM_LOGIN_FIELD));
                 currentUser.setPassword(request.getParameter(FRM_PWD_FIELD));
 
                 dba = new DBActions(dbURL, dbUser, dbPassword);
+                
+                // Check is the credentials are valid combinaison from db
                 if (dba.validateCredentials(currentUser)) {
                     session.setAttribute("user", currentUser);
                     request.setAttribute("employeesList", dba.getEmployees());
@@ -81,7 +92,9 @@ public class Controller extends HttpServlet {
                     request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
                 }
             }
-        } else if (request.getParameter("action").equals(FRM_ACTION_DETAIL)) {
+        } 
+        // If the user try to display details from an employee
+        else if (request.getParameter("action").equals(FRM_ACTION_DETAIL)) {
             if (currentUser != null) {
                 dba = new DBActions(dbURL, dbUser, dbPassword);
                 selectedEmployee = dba.getEmployeeByID(request.getParameter(FRM_ID_FIELD));
@@ -95,8 +108,11 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        } else if (request.getParameter("action").equals(FRM_ACTION_DELETE)) {
+        } 
+        // If the user try to delete an employee
+        else if (request.getParameter("action").equals(FRM_ACTION_DELETE)) {
             if (currentUser != null) {
+                // We check if the user is admin, else we redirect it to the welcome page
                 if (currentUser.getIsAdmin()) {
                     dba = new DBActions(dbURL, dbUser, dbPassword);
                     dba.deleteEmployeeByID(request.getParameter(FRM_ID_FIELD));
@@ -109,7 +125,9 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        } else if (request.getParameter("action").equals(FRM_ACTION_ADD)) {
+        } 
+        // If the user try to add an employee
+        else if (request.getParameter("action").equals(FRM_ACTION_ADD)) {
             if (currentUser != null) {
                 if (currentUser.getIsAdmin()) {
                     dba = new DBActions(dbURL, dbUser, dbPassword);
@@ -121,10 +139,14 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        } else if (request.getParameter("action").equals(FRM_ACTION_LOGOUT)) {
+        } 
+        // If the user want to logout, we destroy the session and redirect the user to the logout page
+        else if (request.getParameter("action").equals(FRM_ACTION_LOGOUT)) {
             session.invalidate();
             request.getRequestDispatcher(JSP_EXIT_PAGE).forward(request, response);
-        } else if (request.getParameter("action").equals(FRM_ACTION_SAVE)) {
+        } 
+        // If the user has filled the edit form, we update all data in the database
+        else if (request.getParameter("action").equals(FRM_ACTION_SAVE)) {
             if (currentUser != null) {
                 if (currentUser.getIsAdmin()) {
                     selectedEmployee = new Employee();
@@ -145,7 +167,9 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        } else if (request.getParameter("action").equals(FRM_ACTION_CREATE)) {
+        }
+        // If the user has filled the add form, we insert all data in the database
+        else if (request.getParameter("action").equals(FRM_ACTION_CREATE)) {
             if (currentUser != null) {
                 if (currentUser.getIsAdmin()) {
                     selectedEmployee = new Employee();
