@@ -171,6 +171,7 @@ public class DBActions {
         try {
             ps = conn.prepareStatement(UPD_QUERY_EMPLOYEE_BY_ID);
             fillEmployee(emp, ps);
+            ps.setInt(10, emp.getId());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
