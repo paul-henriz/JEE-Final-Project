@@ -123,22 +123,45 @@ public class Controller extends HttpServlet {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
         } else if (request.getParameter("action").equals(FRM_ACTION_LOGOUT)) {
-                request.getRequestDispatcher(JSP_EXIT_PAGE).forward(request, response);
-        } else if(request.getParameter("action").equals("save")){
+            request.getRequestDispatcher(JSP_EXIT_PAGE).forward(request, response);
+        } else if (request.getParameter("action").equals(FRM_ACTION_SAVE)) {
             if (currentUser != null) {
                 if (currentUser.getIsAdmin()) {
-                    Employee updated = new Employee();
-                    updated.setId(Integer.parseInt(request.getParameter(FRM_ID_FIELD)));
-                    updated.setFirstName(request.getParameter(FRM_FIRSTNAME_FIELD));
-                    updated.setName(request.getParameter(FRM_NAME_FIELD));
-                    updated.setTelHome(request.getParameter(FRM_TELDOM_FIELD));
-                    updated.setTelMobile(request.getParameter(FRM_TELMOB_FIELD));
-                    updated.setTelPro(request.getParameter(FRM_TELPRO_FIELD));
-                    updated.setAddress(request.getParameter(FRM_ADDRESS_FIELD));
-                    updated.setZipCode(request.getParameter(FRM_ZIP_FIELD));
-                    updated.setCity(request.getParameter(FRM_CITY_FIELD));
-                    updated.setEmail(request.getParameter(FRM_EMAIL_FIELD));
-                    dba.updateEmployee(updated);
+                    selectedEmployee = new Employee();
+                    selectedEmployee.setId(Integer.parseInt(request.getParameter(FRM_ID_FIELD)));
+                    selectedEmployee.setFirstName(request.getParameter(FRM_FIRSTNAME_FIELD));
+                    selectedEmployee.setName(request.getParameter(FRM_NAME_FIELD));
+                    selectedEmployee.setTelHome(request.getParameter(FRM_TELDOM_FIELD));
+                    selectedEmployee.setTelMobile(request.getParameter(FRM_TELMOB_FIELD));
+                    selectedEmployee.setTelPro(request.getParameter(FRM_TELPRO_FIELD));
+                    selectedEmployee.setAddress(request.getParameter(FRM_ADDRESS_FIELD));
+                    selectedEmployee.setZipCode(request.getParameter(FRM_ZIP_FIELD));
+                    selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
+                    selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
+                    dba.updateEmployee(selectedEmployee);
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                }
+            } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            }
+        } else if (request.getParameter("action").equals(FRM_ACTION_ADD)) {
+            if (currentUser != null) {
+                if (currentUser.getIsAdmin()) {
+                    selectedEmployee = new Employee();
+                    selectedEmployee.setId(Integer.parseInt(request.getParameter(FRM_ID_FIELD)));
+                    selectedEmployee.setFirstName(request.getParameter(FRM_FIRSTNAME_FIELD));
+                    selectedEmployee.setName(request.getParameter(FRM_NAME_FIELD));
+                    selectedEmployee.setTelHome(request.getParameter(FRM_TELDOM_FIELD));
+                    selectedEmployee.setTelMobile(request.getParameter(FRM_TELMOB_FIELD));
+                    selectedEmployee.setTelPro(request.getParameter(FRM_TELPRO_FIELD));
+                    selectedEmployee.setAddress(request.getParameter(FRM_ADDRESS_FIELD));
+                    selectedEmployee.setZipCode(request.getParameter(FRM_ZIP_FIELD));
+                    selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
+                    selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
+                    dba.addEmployee(selectedEmployee);
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                 }
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
