@@ -43,7 +43,7 @@
                 }
             %>
             <hr>
-            <input type="hidden" name="id" value="<%=em.getId()%>"
+            <input type="hidden" name="id" value="<%=em.getId()%>">
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
