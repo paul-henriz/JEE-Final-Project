@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/674819ebd8.js" crossorigin="anonymous"></script>
-        <title>This is an HTML Table at your service!</title>
+        <title>Welcome page to see employees</title>
     </head>
     <style>
         <%@ include file="../css/style.css"%>
@@ -64,7 +64,7 @@
                     <%}%>
                 </tbody>
                 </table>
-                <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
+                    <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
                 <button class="btn btn-secondary float-right" type='submit' name="action" value="details">Details</button>
                 <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
             </div>
