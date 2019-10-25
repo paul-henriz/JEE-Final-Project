@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import m1se.project.Exception.MissingParameter;
 import static m1se.project.Helpers.Constants.*;
 
 /**
@@ -145,7 +146,10 @@ public class DBActions {
         }
     }
 
-    public void fillEmployee(Employee emp, PreparedStatement prepStat) throws SQLException {
+    public void fillEmployee(Employee emp, PreparedStatement prepStat) throws SQLException, MissingParameter {
+        if (emp.getName().isEmpty() || emp.getFirstName().isEmpty() || emp.getTelHome().isEmpty() || emp.getTelMobile().isEmpty() || emp.getTelPro().isEmpty() || emp.getAddress().isEmpty() || emp.getZipCode().isEmpty() || emp.getCity().isEmpty() || emp.getEmail().isEmpty()) {
+            throw new MissingParameter();
+        }
         prepStat.setString(1, emp.getName());
         prepStat.setString(2, emp.getFirstName());
         prepStat.setString(3, emp.getTelHome());
@@ -156,13 +160,13 @@ public class DBActions {
         prepStat.setString(8, emp.getCity());
         prepStat.setString(9, emp.getEmail());
     }
-    
+
     public void addEmployee(Employee emp) {
         try {
             ps = conn.prepareStatement(INS_QUERY_EMPLOYEE);
             fillEmployee(emp, ps);
             ps.executeUpdate();
-        } catch (SQLException ex) {
+        } catch (SQLException | MissingParameter ex) {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -173,7 +177,7 @@ public class DBActions {
             fillEmployee(emp, ps);
             ps.setInt(10, emp.getId());
             ps.executeUpdate();
-        } catch (SQLException ex) {
+        } catch (SQLException | MissingParameter ex) {
             Logger.getLogger(DBActions.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
