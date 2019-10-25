@@ -123,6 +123,7 @@ public class Controller extends HttpServlet {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
         } else if (request.getParameter("action").equals(FRM_ACTION_LOGOUT)) {
+            session.invalidate();
             request.getRequestDispatcher(JSP_EXIT_PAGE).forward(request, response);
         } else if (request.getParameter("action").equals(FRM_ACTION_SAVE)) {
             if (currentUser != null) {
@@ -167,7 +168,6 @@ public class Controller extends HttpServlet {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

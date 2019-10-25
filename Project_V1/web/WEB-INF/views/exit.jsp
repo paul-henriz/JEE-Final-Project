@@ -19,7 +19,7 @@
         <div class="logout_page">
             <h1 style="">You are successfully logged out !</h1>
             <h4>If you want to login please
-                <a href="">click here</a>
+                <a href="Controller">click here</a>
             </h4>
         </div>
     </body>
