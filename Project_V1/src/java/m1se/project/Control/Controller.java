@@ -145,7 +145,7 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
-        } else if (request.getParameter("action").equals(FRM_ACTION_ADD)) {
+        } else if (request.getParameter("action").equals(FRM_ACTION_CREATE)) {
             if (currentUser != null) {
                 if (currentUser.getIsAdmin()) {
                     selectedEmployee = new Employee();
