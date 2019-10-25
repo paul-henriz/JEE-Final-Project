@@ -142,6 +142,9 @@ public class Controller extends HttpServlet {
                     dba.updateEmployee(selectedEmployee);
                     request.setAttribute("employeesList", dba.getEmployees());
                     request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                 } else {
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                 }
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
@@ -161,6 +164,9 @@ public class Controller extends HttpServlet {
                     selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
                     selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
                     dba.addEmployee(selectedEmployee);
+                    request.setAttribute("employeesList", dba.getEmployees());
+                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
+                 } else {
                     request.setAttribute("employeesList", dba.getEmployees());
                     request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                 }
