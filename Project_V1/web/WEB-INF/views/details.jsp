@@ -47,55 +47,55 @@
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" value="<%=em.getName()%>" name="name">
+                    <input type="text" class="form-control" id="nom" value="<%=em.getName()%>" name="name" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="prenom" class="col-sm-2 col-form-label">Prénom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="prenom" value="<%=em.getFirstName()%>" name="firstname">
+                    <input type="text" class="form-control" id="prenom" value="<%=em.getFirstName()%>" name="firstname" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="teldom" class="col-sm-2 col-form-label">Tel Dom</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="teldom" value="<%=em.getTelHome()%>" name="teldom">
+                  <input type="tel" class="form-control" id="teldom" value="<%=em.getTelHome()%>" name="teldom" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telpro" class="col-sm-2 col-form-label">Tel Pro</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="telpro" value="<%=em.getTelPro()%>" name="telpro">
+                  <input type="tel" class="form-control" id="telpro" value="<%=em.getTelPro()%>" name="telpro" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telmob" class="col-sm-2 col-form-label">Tel Mob</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="telmob" value="<%=em.getTelMobile()%>" name="telmob">
+                    <input type="tel" class="form-control" id="telmob" value="<%=em.getTelMobile()%>" name="telmob" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="adresse" class="col-sm-2 col-form-label">Adresse</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="adresse" value="<%=em.getAddress()%>" name="address">
+                  <input type="text" class="form-control" id="adresse" value="<%=em.getAddress()%>" name="address" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="zip" class="col-sm-2 col-form-label">Code Postal</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="zip" value="<%=em.getZipCode()%>" name="zip">
+                  <input type="text" class="form-control" id="zip" value="<%=em.getZipCode()%>" name="zip" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ville" class="col-sm-2 col-form-label">Ville</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ville" value="<%=em.getCity()%>" name="city">
+                    <input type="text" class="form-control" id="ville" value="<%=em.getCity()%>" name="city" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" value="<%=em.getEmail()%>" name="email">
+                    <input type="email" class="form-control" id="email" value="<%=em.getEmail()%>" name="email" required>
                 </div>
             </div>
             <button class="btn btn-secondary float-right" type='submit' name="action" value="cancel">Cancel</button>
