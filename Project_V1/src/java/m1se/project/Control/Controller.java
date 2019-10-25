@@ -122,6 +122,8 @@ public class Controller extends HttpServlet {
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
+        } else if (request.getParameter("action").equals(FRM_ACTION_LOGOUT)) {
+                request.getRequestDispatcher(JSP_EXIT_PAGE).forward(request, response);
         }
 
     }

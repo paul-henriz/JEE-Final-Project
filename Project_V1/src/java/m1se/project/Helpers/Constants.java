@@ -22,7 +22,7 @@ public class Constants {
     public static final String JSP_HOME_PAGE = "WEB-INF/views/home.jsp";
     public static final String JSP_WELCOME_PAGE = "WEB-INF/views/welcome.jsp";
     public static final String JSP_DETAIL_PAGE = "WEB-INF/views/details.jsp";
-    public static final String JSP_EXIT_PAGE = "";
+    public static final String JSP_EXIT_PAGE = "WEB-INF/views/exit.jsp";
     public static final String FRM_LOGIN_FIELD = "loginSent";
     public static final String FRM_PWD_FIELD = "passwordSent";
     
@@ -43,4 +43,5 @@ public class Constants {
     public static final String FRM_ACTION_ADD = "add";
     public static final String FRM_ACTION_SAVE = "save";
     public static final String FRM_ACTION_CANCEL = "cancel";
+    public static final String FRM_ACTION_LOGOUT = "logout";
 }
