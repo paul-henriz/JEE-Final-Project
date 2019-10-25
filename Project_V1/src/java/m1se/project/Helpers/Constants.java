@@ -42,6 +42,7 @@ public class Constants {
     public static final String FRM_ACTION_DETAIL = "details";
     public static final String FRM_ACTION_ADD = "add";
     public static final String FRM_ACTION_SAVE = "save";
+    public static final String FRM_ACTION_CREATE = "create";
     public static final String FRM_ACTION_CANCEL = "cancel";
     public static final String FRM_ACTION_LOGOUT = "logout";
 }
