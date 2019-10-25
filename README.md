@@ -29,7 +29,7 @@ IDE used to develop: NetBeans 8.1/8.2
     - [x] Separation of responsiblities
     - [x] MVC compliant (at least for V1 & V2)
     - [x] Unique servlet
-    - [ ] Entry point = servlet
+    - [x] Entry point = servlet
     - [ ] Variables : Declaration => global / Initialization => local
     - [ ] Elegant and efficient management of exceptions
     
