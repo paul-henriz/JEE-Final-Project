@@ -142,9 +142,6 @@ public class Controller extends HttpServlet {
                     dba.updateEmployee(selectedEmployee);
                     request.setAttribute("employeesList", dba.getEmployees());
                     request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
-                 } else {
-                    request.setAttribute("employeesList", dba.getEmployees());
-                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                 }
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
@@ -166,10 +163,14 @@ public class Controller extends HttpServlet {
                     dba.addEmployee(selectedEmployee);
                     request.setAttribute("employeesList", dba.getEmployees());
                     request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
-                 } else {
-                    request.setAttribute("employeesList", dba.getEmployees());
-                    request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                 }
+            } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            }
+        } else if (request.getParameter("action").equals(FRM_ACTION_CANCEL)) {
+            if (currentUser != null) {
+                request.setAttribute("employeesList", dba.getEmployees());
+                request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
             } else {
                 request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
             }
