@@ -124,6 +124,25 @@ public class Controller extends HttpServlet {
             }
         } else if (request.getParameter("action").equals(FRM_ACTION_LOGOUT)) {
                 request.getRequestDispatcher(JSP_EXIT_PAGE).forward(request, response);
+        } else if(request.getParameter("action").equals("save")){
+            if (currentUser != null) {
+                if (currentUser.getIsAdmin()) {
+                    Employee updated = new Employee();
+                    updated.setId(Integer.parseInt(request.getParameter(FRM_ID_FIELD)));
+                    updated.setFirstName(request.getParameter(FRM_FIRSTNAME_FIELD));
+                    updated.setName(request.getParameter(FRM_NAME_FIELD));
+                    updated.setTelHome(request.getParameter(FRM_TELDOM_FIELD));
+                    updated.setTelMobile(request.getParameter(FRM_TELMOB_FIELD));
+                    updated.setTelPro(request.getParameter(FRM_TELPRO_FIELD));
+                    updated.setAddress(request.getParameter(FRM_ADDRESS_FIELD));
+                    updated.setZipCode(request.getParameter(FRM_ZIP_FIELD));
+                    updated.setCity(request.getParameter(FRM_CITY_FIELD));
+                    updated.setEmail(request.getParameter(FRM_EMAIL_FIELD));
+                    dba.updateEmployee(updated);
+                }
+            } else {
+                request.getRequestDispatcher(JSP_HOME_PAGE).forward(request, response);
+            }
         }
 
     }
