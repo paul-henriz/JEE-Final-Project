@@ -13,7 +13,7 @@ public class MissingParameter extends Exception{
 
     @Override
     public String getMessage() {
-        return "One parameter or more is missing."; //To change body of generated methods, choose Tools | Templates.
+        return "One parameter or more is missing.";
     }
     
 }
