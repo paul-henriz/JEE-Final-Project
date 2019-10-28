@@ -30,6 +30,15 @@ public class DBActions {
     ArrayList<User> listUsers;
     ArrayList<Employee> listEmployees;
 
+    /**
+     * Default constructor with 3 parameters
+     * @param url
+     * The URL to access to the database
+     * @param user
+     * The database user
+     * @param pwd 
+     * The database password
+     */
     public DBActions(String url, String user, String pwd) {
         try {
             conn = DriverManager.getConnection(url, user, pwd);
@@ -38,6 +47,13 @@ public class DBActions {
         }
     }
 
+    /**
+     * Get statement from the connection
+     * @param conn
+     * The connection to the database
+     * @return
+     * The statement
+     */
     public Statement getStatement(Connection conn) {
         try {
             stmt = conn.createStatement();
@@ -47,6 +63,14 @@ public class DBActions {
         return stmt;
     }
 
+    /**
+     * Return the ResultSet from a request
+     * @param stmt
+     * The statement
+     * @param request
+     * The select request to execute
+     * @return
+     */
     public ResultSet getResultSet(Statement stmt, String request) {
         try {
             rs = stmt.executeQuery(request);
@@ -56,6 +80,11 @@ public class DBActions {
         return rs;
     }
 
+    /**
+     * Return the list of all user stored in the database
+     * @return
+     * List of user in the database
+     */
     public ArrayList<User> getUser() {
         listUsers = new ArrayList<>();
         rs = getResultSet(getStatement(conn), SEL_QUERY_CREDENTIALS);
@@ -73,6 +102,13 @@ public class DBActions {
         return listUsers;
     }
 
+    /**
+     * Check if the credentials are corresponding to a combinaison in the db
+     * @param input
+     * The user to check
+     * @return
+     * A boolean (true if user is allowed)
+     */
     public boolean validateCredentials(User input) {
         boolean result = false;
         listUsers = getUser();
@@ -85,6 +121,11 @@ public class DBActions {
         return result;
     }
 
+    /**
+     * Query the database to return a list of all employees
+     * @return
+     * The list of all employees in the database
+     */
     public ArrayList<Employee> getEmployees() {
         listEmployees = new ArrayList<>();
         rs = getResultSet(getStatement(conn), SEL_QUERY_EMPLOYEES);
@@ -109,6 +150,13 @@ public class DBActions {
         return listEmployees;
     }
 
+    /**
+     * Query the database to retrieve the employee selected by its id
+     * @param id
+     * The id to find in the database
+     * @return
+     * The employee corresponding to the id
+     */
     public Employee getEmployeeByID(String id) {
         try {
             ps = conn.prepareStatement(SEL_QUERY_EMPLOYEE_BY_ID);
@@ -136,6 +184,11 @@ public class DBActions {
         return null;
     }
 
+    /**
+     * Delete an employee from its id
+     * @param id
+     * The id of the employee to delete
+     */
     public void deleteEmployeeByID(String id) {
         try {
             ps = conn.prepareStatement(DEL_QUERY_EMPLOYEE_BY_ID);
@@ -146,6 +199,16 @@ public class DBActions {
         }
     }
 
+    /**
+     * Fill a prepared statement from an employee
+     * @param emp
+     * The source employee
+     * @param prepStat
+     * The prepared statement to fill
+     * @throws SQLException
+     * @throws MissingParameter
+     * If one parameter is missing
+     */
     public void fillEmployee(Employee emp, PreparedStatement prepStat) throws SQLException, MissingParameter {
         if (emp.getName().isEmpty() || emp.getFirstName().isEmpty() || emp.getTelHome().isEmpty() || emp.getTelMobile().isEmpty() || emp.getTelPro().isEmpty() || emp.getAddress().isEmpty() || emp.getZipCode().isEmpty() || emp.getCity().isEmpty() || emp.getEmail().isEmpty()) {
             throw new MissingParameter();
@@ -161,6 +224,11 @@ public class DBActions {
         prepStat.setString(9, emp.getEmail());
     }
 
+    /**
+     * Add an employee to the database
+     * @param emp
+     * The employee to add
+     */
     public void addEmployee(Employee emp) {
         try {
             ps = conn.prepareStatement(INS_QUERY_EMPLOYEE);
@@ -171,6 +239,11 @@ public class DBActions {
         }
     }
 
+    /**
+     * Update a database employee record from the bean
+     * @param emp
+     * The employee to update
+     */
     public void updateEmployee(Employee emp) {
         try {
             ps = conn.prepareStatement(UPD_QUERY_EMPLOYEE_BY_ID);
