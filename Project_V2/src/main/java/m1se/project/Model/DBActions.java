@@ -136,10 +136,10 @@ public class DBActions {
                 e.setName(rs.getString("NAME"));
                 e.setFirstName(rs.getString("FIRSTNAME"));
                 e.setTelHome(rs.getString("TELHOME"));
-                e.setTelMobile(rs.getString("TELMOB"));
+                e.setTelMob(rs.getString("TELMOB"));
                 e.setTelPro(rs.getString("TELPRO"));
-                e.setAddress(rs.getString("ADRESS"));
-                e.setZipCode(rs.getString("POSTALCODE"));
+                e.setAdress(rs.getString("ADRESS"));
+                e.setPostalCode(rs.getString("POSTALCODE"));
                 e.setCity(rs.getString("CITY"));
                 e.setEmail(rs.getString("EMAIL"));
                 listEmployees.add(e);
@@ -169,10 +169,10 @@ public class DBActions {
                 e.setName(rs.getString("NAME"));
                 e.setFirstName(rs.getString("FIRSTNAME"));
                 e.setTelHome(rs.getString("TELHOME"));
-                e.setTelMobile(rs.getString("TELMOB"));
+                e.setTelMob(rs.getString("TELMOB"));
                 e.setTelPro(rs.getString("TELPRO"));
-                e.setAddress(rs.getString("ADRESS"));
-                e.setZipCode(rs.getString("POSTALCODE"));
+                e.setAdress(rs.getString("ADRESS"));
+                e.setPostalCode(rs.getString("POSTALCODE"));
                 e.setCity(rs.getString("CITY"));
                 e.setEmail(rs.getString("EMAIL"));
                 return e;
@@ -210,16 +210,16 @@ public class DBActions {
      * If one parameter is missing
      */
     public void fillEmployee(Employee emp, PreparedStatement prepStat) throws SQLException, MissingParameter {
-        if (emp.getName().isEmpty() || emp.getFirstName().isEmpty() || emp.getTelHome().isEmpty() || emp.getTelMobile().isEmpty() || emp.getTelPro().isEmpty() || emp.getAddress().isEmpty() || emp.getZipCode().isEmpty() || emp.getCity().isEmpty() || emp.getEmail().isEmpty()) {
+        if (emp.getName().isEmpty() || emp.getFirstName().isEmpty() || emp.getTelHome().isEmpty() || emp.getTelMob().isEmpty() || emp.getTelPro().isEmpty() || emp.getAdress().isEmpty() || emp.getPostalCode().isEmpty() || emp.getCity().isEmpty() || emp.getEmail().isEmpty()) {
             throw new MissingParameter();
         }
         prepStat.setString(1, emp.getName());
         prepStat.setString(2, emp.getFirstName());
         prepStat.setString(3, emp.getTelHome());
-        prepStat.setString(4, emp.getTelMobile());
+        prepStat.setString(4, emp.getTelMob());
         prepStat.setString(5, emp.getTelPro());
-        prepStat.setString(6, emp.getAddress());
-        prepStat.setString(7, emp.getZipCode());
+        prepStat.setString(6, emp.getAdress());
+        prepStat.setString(7, emp.getPostalCode());
         prepStat.setString(8, emp.getCity());
         prepStat.setString(9, emp.getEmail());
     }

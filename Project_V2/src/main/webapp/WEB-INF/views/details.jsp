@@ -73,19 +73,19 @@
             <div class="form-group row">
                 <label for="telmob" class="col-sm-2 col-form-label">Tel Mob</label>
                 <div class="col-sm-10">
-                    <input type="tel" class="form-control" id="telmob" value="<%if(em.getTelMobile()!=null){%><%=em.getTelMobile()%><%}%>" name="telmob" <%=isDisabled %> required>
+                    <input type="tel" class="form-control" id="telmob" value="<%if(em.getTelMob()!=null){%><%=em.getTelMob()%><%}%>" name="telmob" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="adresse" class="col-sm-2 col-form-label">Adresse</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="adresse" value="<%if(em.getAddress()!=null){%><%=em.getAddress()%><%}%>" name="address" <%=isDisabled %> required>
+                  <input type="text" class="form-control" id="adresse" value="<%if(em.getAdress()!=null){%><%=em.getAdress()%><%}%>" name="address" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="zip" class="col-sm-2 col-form-label">Code Postal</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="zip" value="<%if(em.getZipCode()!=null){%><%=em.getZipCode()%><%}%>" name="zip" <%=isDisabled %> required>
+                  <input type="text" class="form-control" id="zip" value="<%if(em.getPostalCode()!=null){%><%=em.getPostalCode()%><%}%>" name="zip" <%=isDisabled %> required>
                 </div>
             </div>
             <div class="form-group row">

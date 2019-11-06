@@ -57,10 +57,10 @@
                             <td><%=employees.get(i).getName()%></td>
                             <td><%=employees.get(i).getFirstName()%></td>
                             <td class="remove"><%=employees.get(i).getTelHome()%></td>
-                            <td class="remove"><%=employees.get(i).getTelMobile()%></td>
+                            <td class="remove"><%=employees.get(i).getTelMob()%></td>
                             <td class="remove"><%=employees.get(i).getTelPro()%></td>
-                            <td class="remove"><%=employees.get(i).getAddress()%></td>
-                            <td class="remove"><%=employees.get(i).getZipCode()%></td>
+                            <td class="remove"><%=employees.get(i).getAdress()%></td>
+                            <td class="remove"><%=employees.get(i).getPostalCode()%></td>
                             <td class="remove"><%=employees.get(i).getCity()%></td>
                             <td class="remove"><%=employees.get(i).getEmail()%></td>
                         </tr>
