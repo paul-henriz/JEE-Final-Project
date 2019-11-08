@@ -7,7 +7,6 @@ package m1se.project.Control;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Properties;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
