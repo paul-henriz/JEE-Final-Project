@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Employee.findByPostalCode", query = "SELECT e FROM Employee e WHERE e.postalCode = :postalCode")
     , @NamedQuery(name = "Employee.findByCity", query = "SELECT e FROM Employee e WHERE e.city = :city")
     , @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email")
-    , @NamedQuery(name = "Employee.deleteById", query = "DELETE FROM Employee e WHERE e.id = :id")})
+    , @NamedQuery(name = "Employee.deleteById", query = "DELETE FROM Employee e WHERE e.id = :id")
+    , @NamedQuery(name = "Employee.updateByID", query = "UPDATE Employee e SET e.name = :name, e.firstName = :firstname, e.telHome = :telhome, e.telMob = :telmob, e.telPro = :telpro, e.adress = :adress, e.postalCode = :postalcode, e.city = :city, e.email = :email WHERE e.id = :id")})
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;

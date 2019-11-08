@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import static m1se.project.Helpers.Constants.*;
-import m1se.project.Model.DBActions;
 import m1se.project.Model.Employee;
 import m1se.project.Model.EmployeeSB;
 import m1se.project.Model.User;
@@ -29,13 +28,11 @@ import m1se.project.Model.UserSB;
 public class Controller extends HttpServlet {
     @EJB
     private EmployeeSB eSB;
-    ArrayList<Employee> empList;
     
     @EJB
     private UserSB uSB;
         
     HttpSession session;
-    DBActions dba;
     InputStream input;
     User currentUser;
     Properties prop;
@@ -57,14 +54,6 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         // Retrieve session of the user
         session = request.getSession();
-        
-        // Read database properties
-        prop = new Properties();
-        input = getServletContext().getResourceAsStream("/WEB-INF/db.properties");
-        prop.load(input);
-        dbURL = prop.getProperty("dbUrl");
-        dbUser = prop.getProperty("dbUser");
-        dbPassword = prop.getProperty("dbPwd");
         
         // Retrieve user from the session
         currentUser = (User) session.getAttribute("user");
@@ -157,7 +146,7 @@ public class Controller extends HttpServlet {
                         selectedEmployee.setPostalCode(request.getParameter(FRM_ZIP_FIELD));
                         selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
                         selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
-                        dba.updateEmployee(selectedEmployee);
+                        eSB.saveEmployee(selectedEmployee);
                         request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                     }
