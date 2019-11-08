@@ -158,7 +158,7 @@ public class Controller extends HttpServlet {
                         selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
                         selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
                         dba.updateEmployee(selectedEmployee);
-                        request.setAttribute("employeesList", dba.getEmployees());
+                        request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                     }
                 } else {
@@ -177,8 +177,8 @@ public class Controller extends HttpServlet {
                         selectedEmployee.setPostalCode(request.getParameter(FRM_ZIP_FIELD));
                         selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
                         selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
-                        dba.addEmployee(selectedEmployee);
-                        request.setAttribute("employeesList", dba.getEmployees());
+                        eSB.saveEmployee(selectedEmployee);
+                        request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                     }
                 } else {

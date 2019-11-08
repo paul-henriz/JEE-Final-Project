@@ -41,4 +41,8 @@ public class EmployeeSB {
         q.setParameter("id", Integer.parseInt(ID));
         q.executeUpdate();
     }
+    
+    public void saveEmployee(Employee emp){
+        em.persist(emp);
+    }
 }
