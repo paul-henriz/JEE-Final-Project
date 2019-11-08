@@ -1,7 +1,9 @@
 <%-- 
-    Document   : welcom
-    Created on : 15 oct. 2019, 10:40:14
-    Author     : nicolas
+    !!!!!!!!!!
+    TO DO 
+    !!!!!!!!!!
+
+    Afficher un message s'il n'y a aucun employé dans la base
 --%>
 
 <%@page import="m1se.project.Model.User"%>
