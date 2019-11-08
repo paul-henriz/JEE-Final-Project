@@ -52,15 +52,15 @@ IDE used to develop: NetBeans 8.1/8.2
 
 ### Version 2
 
-- [ ] Maven project
+- [x] Maven project
 - [ ] JSP (EL et JSTL only/ Please no Java code in your JSPs)
-- [ ] Java Beans
-- [ ] Servlet (optimized)
-- [ ] Persistance with JPA
-- [ ] DBMS : MySQL
+- [x] Java Beans
+- [x] Servlet (optimized)
+- [x] Persistance with JPA
+- [x] DBMS : MySQL
 
 ### Version 3
 
 - [ ] Use RESTful Web services
-- [ ] DBMS : A remote solution
+- [x] DBMS : A remote solution
 - [ ] Code quality: use Sonarqube & JUnit 
