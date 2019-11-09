@@ -11,6 +11,7 @@
 <%@page import="m1se.project.Model.Employee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,15 +25,14 @@
     </style>
     <body>
         <nav class="navbar fixed-top navbar-dark bg-dark">
-            
-            <% User u = (User) request.getSession().getAttribute("user");
-            String isDisabled = "disabled";
-            if(u.getIsAdmin()) isDisabled = "";
-            %>
-            <h1 class="navbar-brand ">Hello <b><%=u.getLogin()%></b> ! Your session is active</h1>
+            <c:set var="u" value="${ user }" />
+            <h1 class="navbar-brand ">Hello <b>${u.login}</b> ! Your session is active</h1>
             <a href="?action=logout" class="logout"><i class="fas fa-power-off"></i></a>
         </nav>
+          
         
+        <c:choose>
+        <c:when test="${fn:length(employeesList) > 0}">
         <form method="POST" action="Controller">
             <div class="tabCenter">
             <table border = 1 class="table table-striped tSize">
@@ -57,19 +57,32 @@
                             <td>${emp.name}</td>
                             <td>${emp.firstName}</td>
                             <td class="remove">${emp.telHome}</td>
-                            <td class="remove">${emp.telMobile}</td>
+                            <td class="remove">${emp.telMob}</td>
                             <td class="remove">${emp.telPro}</td>
-                            <td class="remove">${emp.address}</td>
-                            <td class="remove">${emp.zipCode}</td>
+                            <td class="remove">${emp.adress}</td>
+                            <td class="remove">${emp.postalCode}</td>
                             <td class="remove">${emp.city}</td>
                             <td class="remove">${emp.email}</td>
                         </tr>
-                        </c:forEach>
+                    </c:forEach>    
                 </tbody>
                 </table>
-                    <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
+                <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
                 <button class="btn btn-secondary float-right" type='submit' name="action" value="details">Details</button>
-                <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
+                <c:if test="${u.isAdmin eq true}">
+                    <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
+                </c:if>
             </div>
+            </c:when>
+            <c:otherwise>
+                <div class="logout_page">
+                    <h1>There is no Employees in database</h1>
+                    <form method="POST" action="Controller">
+                    <c:if test="${u.isAdmin eq true}">
+                    <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
+                </c:if>
+                </div>
+            </c:otherwise>
+            </c:choose>
     </body>
 </html>
