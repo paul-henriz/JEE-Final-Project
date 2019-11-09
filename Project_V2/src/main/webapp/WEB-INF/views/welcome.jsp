@@ -24,6 +24,7 @@
     </style>
     <body>
         <nav class="navbar fixed-top navbar-dark bg-dark">
+            
             <% User u = (User) request.getSession().getAttribute("user");
             String isDisabled = "disabled";
             if(u.getIsAdmin()) isDisabled = "";
@@ -50,28 +51,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%
-                        ArrayList<Employee> employees = (ArrayList<Employee>) request.getAttribute("employeesList");
-                        for (int i = 0; i < employees.size(); i++) {
-                    %>
+                    <c:forEach items="${employeesList}" var="emp">
                         <tr>
-                            <th scope="row"><input type="radio" name="id" value="<%=employees.get(i).getId()%>" checked ></th>
-                            <td><%=employees.get(i).getName()%></td>
-                            <td><%=employees.get(i).getFirstName()%></td>
-                            <td class="remove"><%=employees.get(i).getTelHome()%></td>
-                            <td class="remove"><%=employees.get(i).getTelMob()%></td>
-                            <td class="remove"><%=employees.get(i).getTelPro()%></td>
-                            <td class="remove"><%=employees.get(i).getAdress()%></td>
-                            <td class="remove"><%=employees.get(i).getPostalCode()%></td>
-                            <td class="remove"><%=employees.get(i).getCity()%></td>
-                            <td class="remove"><%=employees.get(i).getEmail()%></td>
+                            <th scope="row"><input type="radio" name="id" value="${emp.id}" checked ></th>
+                            <td>${emp.name}</td>
+                            <td>${emp.firstName}</td>
+                            <td class="remove">${emp.telHome}</td>
+                            <td class="remove">${emp.telMobile}</td>
+                            <td class="remove">${emp.telPro}</td>
+                            <td class="remove">${emp.address}</td>
+                            <td class="remove">${emp.zipCode}</td>
+                            <td class="remove">${emp.city}</td>
+                            <td class="remove">${emp.email}</td>
                         </tr>
-                    <%}%>
+                        </c:forEach>
                 </tbody>
                 </table>
-                    <button class="btn btn-primary float-right" type='submit' name="action" value="delete" <%=isDisabled%>>Delete</button>
+                    <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
                 <button class="btn btn-secondary float-right" type='submit' name="action" value="details">Details</button>
-                <button class="btn btn-danger float-right" type='submit' name="action" value="add" <%=isDisabled%>>Add</button>
+                <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
             </div>
     </body>
 </html>
