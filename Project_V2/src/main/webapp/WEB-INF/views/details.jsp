@@ -8,6 +8,8 @@
 <%@page import="m1se.project.Model.Employee"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,99 +23,90 @@
     </style>
     <body>
         <nav class="navbar fixed-top navbar-dark bg-dark">
-            <% User u = (User) request.getSession().getAttribute("user");%>
-            <h1 class="navbar-brand ">Hello <b><%=u.getLogin()%></b> ! Your session is active</h1>
+            <c:set var="u" value="${ user }" />
+            
+            <h1 class="navbar-brand ">Hello <b>${u.login}</b> ! Your session is active</h1>
             <a href="?action=logout" class="logout"><i class="fas fa-power-off"></i></a>
         </nav>
             <form class="detailForm" method="POST" action="Controller">
-            <%
-                String isDisabled = "disabled";
-                if(u.getIsAdmin()) isDisabled = "";
-                Boolean create = false;
-                Employee em = (Employee) request.getAttribute("emp");
-                if (em!=null) {
-                   request.setAttribute("id", em.getId());
-            %>
-            <h3><%=em.getFirstName()%> <%=em.getName()%></h3>
-            <%
-                } else {
-                   em = new Employee();
-                   create = true;
-            %>
-            <h3>Create User</h3>
-            <%
-                }
-            %>
+                <c:set var="em" value="${ emp }" />
+                <c:choose>
+                    <c:when test="${em ne null}"> 
+                        <h3>${em.firstName} ${em.name}</h3>
+                    </c:when>
+                    <c:otherwise>
+                        <h3>Create User</h3>
+                    </c:otherwise>
+                </c:choose>
             <hr>
-            <input type="hidden" name="id" value="<%=em.getId()%>">
+            <input type="hidden" name="id" value="${em.id}">
             <div class="form-group row">
                 <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nom" value="<%if(em.getName()!=null){%><%=em.getName()%><%}%>" name="name" <%=isDisabled %> required>
+                    <input type="text" class="form-control" id="nom" value="${em.name}" name="name" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="prenom" class="col-sm-2 col-form-label">Prénom</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="prenom" value="<%if(em.getFirstName()!=null){%><%=em.getFirstName()%><%}%>" name="firstname" <%=isDisabled %> required>
+                    <input type="text" class="form-control" id="prenom" value="${em.firstName}" name="firstname" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="teldom" class="col-sm-2 col-form-label">Tel Dom</label>
                 <div class="col-sm-10">
-                  <input type="tel" class="form-control" id="teldom" value="<%if(em.getTelHome()!=null){%><%=em.getTelHome()%><%}%>" name="teldom" <%=isDisabled %> required>
+                  <input type="tel" class="form-control" id="teldom" value="${em.telHome}" name="teldom" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telpro" class="col-sm-2 col-form-label">Tel Pro</label>
                 <div class="col-sm-10">
-                  <input type="tel" class="form-control" id="telpro" value="<%if(em.getTelPro()!=null){%><%=em.getTelPro()%><%}%>" name="telpro" <%=isDisabled %> required>
+                  <input type="tel" class="form-control" id="telpro" value="${em.telMob}" name="telpro" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="telmob" class="col-sm-2 col-form-label">Tel Mob</label>
                 <div class="col-sm-10">
-                    <input type="tel" class="form-control" id="telmob" value="<%if(em.getTelMob()!=null){%><%=em.getTelMob()%><%}%>" name="telmob" <%=isDisabled %> required>
+                    <input type="tel" class="form-control" id="telmob" value="${em.telPro}" name="telmob" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="adresse" class="col-sm-2 col-form-label">Adresse</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="adresse" value="<%if(em.getAdress()!=null){%><%=em.getAdress()%><%}%>" name="address" <%=isDisabled %> required>
+                  <input type="text" class="form-control" id="adresse" value="${em.adress}" name="address" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="zip" class="col-sm-2 col-form-label">Code Postal</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="zip" value="<%if(em.getPostalCode()!=null){%><%=em.getPostalCode()%><%}%>" name="zip" <%=isDisabled %> required>
+                  <input type="text" class="form-control" id="zip" value="${em.postalCode}" name="zip" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="ville" class="col-sm-2 col-form-label">Ville</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="ville" value="<%if(em.getCity()!=null){%><%=em.getCity()%><%}%>" name="city" <%=isDisabled %> required>
+                    <input type="text" class="form-control" id="ville" value="${em.city}" name="city" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" value="<%if(em.getEmail()!=null){%><%=em.getEmail()%><%}%>" name="email" <%=isDisabled %> required>
+                    <input type="email" class="form-control" id="email" value="${em.email}" name="email" <c:if test="${!u.isAdmin}">disabled</c:if> required>
                 </div>
             </div>
             <a href="Controller" class="cancel">
                 <button class="btn btn-secondary float-right" type='button' name="action" value="cancel">Cancel</button>
             </a>
-            <%
-                if (create == false) {
-            %>
-            <button class="btn btn-primary float-right" type='submit' name="action" value="save">Save</button>
-            <%
-                } else {
-            %>
-            <button class="btn btn-primary float-right" type='submit' name="action" value="create">Create</button>
-            <%
-                }
-            %>
+                <c:if test="${u.isAdmin eq true}">
+                    <c:choose>
+                        <c:when test="${em ne null}">
+                            <button class="btn btn-primary float-right" type='submit' name="action" value="save">Save</button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="btn btn-primary float-right" type='submit' name="action" value="create">Create</button>
+                        </c:otherwise>
+                    </c:choose>
+                </c:if>
         </form>
     </body>
 </html>

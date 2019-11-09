@@ -31,6 +31,10 @@
         </nav>
         
         <form method="POST" action="Controller">
+            <%
+            ArrayList<Employee> employees = (ArrayList<Employee>) request.getAttribute("employeesList");
+            if (employees.size() > 0){
+            %>
             <div class="tabCenter">
             <table border = 1 class="table table-striped tSize">
                 <thead>
@@ -49,7 +53,6 @@
                 </thead>
                 <tbody>
                     <%
-                        ArrayList<Employee> employees = (ArrayList<Employee>) request.getAttribute("employeesList");
                         for (int i = 0; i < employees.size(); i++) {
                     %>
                         <tr>
@@ -67,9 +70,16 @@
                     <%}%>
                 </tbody>
                 </table>
-                    <button class="btn btn-primary float-right" type='submit' name="action" value="delete" <%=isDisabled%>>Delete</button>
+                <button class="btn btn-primary float-right" type='submit' name="action" value="delete" <%=isDisabled%>>Delete</button>
                 <button class="btn btn-secondary float-right" type='submit' name="action" value="details">Details</button>
                 <button class="btn btn-danger float-right" type='submit' name="action" value="add" <%=isDisabled%>>Add</button>
+                <%} else {%>
+                <div class="logout_page">
+                    <h1>There is no Employees in database</h1>
+                    <form method="POST" action="Controller">
+                    <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
+                </div>
+                <%}%>
             </div>
     </body>
 </html>
