@@ -32,12 +32,7 @@ public class Controller extends HttpServlet {
     private UserSB uSB;
         
     HttpSession session;
-    InputStream input;
     User currentUser;
-    Properties prop;
-    String dbURL;
-    String dbUser;
-    String dbPassword;
     Employee selectedEmployee;
 
     /**
