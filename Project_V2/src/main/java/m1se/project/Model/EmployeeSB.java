@@ -45,4 +45,7 @@ public class EmployeeSB {
     public void saveEmployee(Employee emp){
         em.persist(emp);
     }
+    public void updateEmployee(Employee emp){
+        em.merge(emp);
+    }
 }

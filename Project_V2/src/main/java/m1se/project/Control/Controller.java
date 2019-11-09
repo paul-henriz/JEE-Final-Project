@@ -145,7 +145,7 @@ public class Controller extends HttpServlet {
                         selectedEmployee.setPostalCode(request.getParameter(FRM_ZIP_FIELD));
                         selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
                         selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
-                        eSB.saveEmployee(selectedEmployee);
+                        eSB.updateEmployee(selectedEmployee);
                         request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                     }
