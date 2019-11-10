@@ -58,7 +58,7 @@ public class EmployeeTest {
     @Test
     public void testGetName() {
         System.out.println("getName");
-        String expResult = "error";
+        String expResult = "";
         String result = instance.getName();
         assertEquals(expResult, result);
     }
