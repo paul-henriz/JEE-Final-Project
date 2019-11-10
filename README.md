@@ -8,6 +8,9 @@ Developers: [Nicolas GUIBERT](https://github.com/GuibertNicolas) & [Paul-Henri Z
 
 IDE used to develop: NetBeans 8.1/8.2
 
+[![Build Status](https://dev.azure.com/paul-henrizimmerlin/JEE-EFREI/_apis/build/status/spirou1997.JEE-Final-Project?branchName=master)](https://dev.azure.com/paul-henrizimmerlin/JEE-EFREI/_build/latest?definitionId=4&branchName=master)
+
+
 ## To-do
 
 ### Global features
