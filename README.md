@@ -53,7 +53,7 @@ IDE used to develop: NetBeans 8.1/8.2
 ### Version 2
 
 - [x] Maven project
-- [ ] JSP (EL et JSTL only/ Please no Java code in your JSPs)
+- [x] JSP (EL et JSTL only/ Please no Java code in your JSPs)
 - [x] Java Beans
 - [x] Servlet (optimized)
 - [x] Persistance with JPA
