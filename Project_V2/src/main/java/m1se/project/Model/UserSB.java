@@ -35,6 +35,7 @@ public class UserSB {
         listUsers = getUsers();
         for (User u : listUsers) {
             if (u.getLogin().equals(input.getLogin()) && u.getPassword().equals(input.getPassword())) {
+                input.setId(u.getId());
                 input.setIsAdmin(u.getIsAdmin());
                 result = true;
             }

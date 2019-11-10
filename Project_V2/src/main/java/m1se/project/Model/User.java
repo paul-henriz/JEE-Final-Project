@@ -6,7 +6,9 @@
 package m1se.project.Model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,6 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.findByIsAdmin", query = "SELECT u FROM User u WHERE u.isAdmin = :isAdmin")})
 public class User implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Log> logCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -124,6 +131,15 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "m1se.project.Control.User[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Log> getLogCollection() {
+        return logCollection;
+    }
+
+    public void setLogCollection(Collection<Log> logCollection) {
+        this.logCollection = logCollection;
     }
     
 }

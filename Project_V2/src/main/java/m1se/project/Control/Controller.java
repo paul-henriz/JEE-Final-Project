@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import static m1se.project.Helpers.Constants.*;
 import m1se.project.Model.Employee;
 import m1se.project.Model.EmployeeSB;
+import m1se.project.Model.LogSB;
 import m1se.project.Model.User;
 import m1se.project.Model.UserSB;
 
@@ -31,9 +32,13 @@ public class Controller extends HttpServlet {
     @EJB
     private UserSB uSB;
         
+    @EJB
+    private LogSB lSB;
+    
     HttpSession session;
     User currentUser;
     Employee selectedEmployee;
+    String ip;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,7 +56,10 @@ public class Controller extends HttpServlet {
         
         // Retrieve user from the session
         currentUser = (User) session.getAttribute("user");
-        
+        ip = request.getHeader("X-FORWARDED-FOR");  
+        if (ip == null) {  
+         ip = request.getRemoteAddr();  
+        }
         if(null == request.getParameter("action")) {
             //If user is connected
             if (currentUser != null) {
@@ -77,6 +85,7 @@ public class Controller extends HttpServlet {
                     // Check is the credentials are valid combinaison from db
                     if (uSB.validateCredentials(currentUser)) {
                         session.setAttribute("user", currentUser);
+                        lSB.addLog(currentUser, ip, FRM_ACTION_LOGIN);
                         request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
                     } else {
@@ -101,6 +110,7 @@ public class Controller extends HttpServlet {
                 if (currentUser != null) {
                     // We check if the user is admin, else we redirect it to the welcome page
                     if (currentUser.getIsAdmin()) {
+                        lSB.addLog(currentUser, ip, FRM_ACTION_DELETE);
                         eSB.deleteEmployeeByID(request.getParameter(FRM_ID_FIELD));
                         request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
@@ -140,6 +150,7 @@ public class Controller extends HttpServlet {
                         selectedEmployee.setPostalCode(request.getParameter(FRM_ZIP_FIELD));
                         selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
                         selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
+                        lSB.addLog(currentUser, ip, FRM_ACTION_SAVE);
                         eSB.updateEmployee(selectedEmployee);
                         request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
@@ -160,6 +171,7 @@ public class Controller extends HttpServlet {
                         selectedEmployee.setPostalCode(request.getParameter(FRM_ZIP_FIELD));
                         selectedEmployee.setCity(request.getParameter(FRM_CITY_FIELD));
                         selectedEmployee.setEmail(request.getParameter(FRM_EMAIL_FIELD));
+                        lSB.addLog(currentUser, ip, FRM_ACTION_CREATE);
                         eSB.saveEmployee(selectedEmployee);
                         request.setAttribute("employeesList", eSB.getEmployees());
                         request.getRequestDispatcher(JSP_WELCOME_PAGE).forward(request, response);
