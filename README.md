@@ -47,11 +47,11 @@ b) The architecture (M.V.C pattern, any suprise(s)?, where is located the remote
     - [x] Unique servlet
     - [x] Entry point = servlet
     - [x] Variables : Declaration => global / Initialization => local
-    - [ ] Elegant and efficient management of exceptions
+    - [x] Elegant and efficient management of exceptions
     
 3. Documentation :
-    - [ ] Javadoc style
-    - [ ] As much useful comments as possible in your code
+    - [x] Javadoc style
+    - [x] As much useful comments as possible in your code
     
 4. Database:
     - [x] Name : JEEPRJ
@@ -79,4 +79,4 @@ b) The architecture (M.V.C pattern, any suprise(s)?, where is located the remote
 
 - [ ] Use RESTful Web services
 - [x] DBMS : A remote solution
-- [ ] Code quality: use Sonarqube & JUnit 
+- [x] Code quality: use Sonarqube & JUnit (Partial: only JUnit tests)
