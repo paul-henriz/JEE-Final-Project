@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Log.findByDate", query = "SELECT l FROM Log l WHERE l.date = :date")
     , @NamedQuery(name = "Log.findByAction", query = "SELECT l FROM Log l WHERE l.action = :action")
     , @NamedQuery(name = "Log.findByIp", query = "SELECT l FROM Log l WHERE l.ip = :ip")})
+@SuppressWarnings("ValidAttributes")
 public class Log implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,13 +65,28 @@ public class Log implements Serializable {
     @ManyToOne(optional = false)
     private User user;
 
+    /**
+     * Empty constructor
+     */
     public Log() {
     }
 
+    /**
+     * Constructor with id
+     * @param id
+     * The id of the log
+     */
     public Log(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Full constructor 
+     * @param id
+     * @param date
+     * @param action
+     * @param ip
+     */
     public Log(Integer id, Date date, String action, String ip) {
         this.id = id;
         this.date = date;
@@ -78,42 +94,87 @@ public class Log implements Serializable {
         this.ip = ip;
     }
 
+    /**
+     * Get the id of a log
+     * @return
+     * The id of the log
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Set the id of a log
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Get the date of a log
+     * @return
+     * The date of the log
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Set the date of a log
+     * @param date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Get the action of a log
+     * @return
+     * The action of the log
+     */
     public String getAction() {
         return action;
     }
 
+    /**
+     * Set the action of a log
+     * @param action
+     */
     public void setAction(String action) {
         this.action = action;
     }
 
+    /**
+     * Get the ip of a log
+     * @return
+     * The ip of the log
+     */
     public String getIp() {
         return ip;
     }
 
+    /**
+     * Set the ip of a log
+     * @param ip
+     */
     public void setIp(String ip) {
         this.ip = ip;
     }
 
+    /**
+     * Get the user of a log
+     * @return
+     * The user of a log
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Set the user of log
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }
