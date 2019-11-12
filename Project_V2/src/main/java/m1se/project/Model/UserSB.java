@@ -55,6 +55,13 @@ public class UserSB {
         }
         return result;
     }
+    
+    /**
+     * Hash the passord with SHA1 algorithm
+     * @param password
+     * @return
+     * The hash of the password
+     */
     public String hashPassword(String password){
         return DigestUtils.sha1Hex(password);
     }
