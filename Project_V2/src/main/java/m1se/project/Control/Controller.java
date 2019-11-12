@@ -6,8 +6,6 @@
 package m1se.project.Control;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
