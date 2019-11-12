@@ -178,11 +178,20 @@ public class User implements Serializable {
         return "m1se.project.Control.User[ id=" + id + " ]";
     }
 
+    /**
+     * Get a collection of logs
+     * @return
+     * The collection of logs
+     */
     @XmlTransient
     public Collection<Log> getLogCollection() {
         return logCollection;
     }
 
+    /**
+     * Set a collection of logs
+     * @param logCollection
+     */
     public void setLogCollection(Collection<Log> logCollection) {
         this.logCollection = logCollection;
     }
