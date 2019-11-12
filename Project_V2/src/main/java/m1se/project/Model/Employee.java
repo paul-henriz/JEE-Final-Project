@@ -38,8 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Employee.findByPostalCode", query = "SELECT e FROM Employee e WHERE e.postalCode = :postalCode")
     , @NamedQuery(name = "Employee.findByCity", query = "SELECT e FROM Employee e WHERE e.city = :city")
     , @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email")
-    , @NamedQuery(name = "Employee.deleteById", query = "DELETE FROM Employee e WHERE e.id = :id")
-    , @NamedQuery(name = "Employee.updateByID", query = "UPDATE Employee e SET e.name = :name, e.firstName = :firstname, e.telHome = :telhome, e.telMob = :telmob, e.telPro = :telpro, e.adress = :adress, e.postalCode = :postalcode, e.city = :city, e.email = :email WHERE e.id = :id")})
+    , @NamedQuery(name = "Employee.deleteById", query = "DELETE FROM Employee e WHERE e.id = :id")})
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -95,13 +94,34 @@ public class Employee implements Serializable {
     @Column(name = "Email")
     private String email;
 
+    /**
+     * Default empty constructor
+     */
     public Employee() {
     }
 
+    /**
+     * Constructor with id
+     * @param id 
+     * The id of the employee
+     */
     public Employee(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Full constructor
+     * @param id
+     * @param name
+     * @param firstName
+     * @param telHome
+     * @param telMob
+     * @param telPro
+     * @param adress
+     * @param postalCode
+     * @param city
+     * @param email
+     */
     public Employee(Integer id, String name, String firstName, String telHome, String telMob, String telPro, String adress, String postalCode, String city, String email) {
         this.id = id;
         this.name = name;
@@ -115,82 +135,162 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
+    /**
+     * Get the id of an employee
+     * @return ID of the employee as an integer
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Set the id of an employee
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Get the name of an employee
+     * @return Name of the employee
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set  the name of an employee
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Get the first name of an employee
+     * @return First name of the employee
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * Set  the first name of an employee
+     * @param firstName
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Get the home phone number of an employee
+     * @return Home phone number of the employee
+     */
     public String getTelHome() {
         return telHome;
     }
 
+    /**
+     * Set the home phone number of an employee
+     * @param telHome
+     */
     public void setTelHome(String telHome) {
         this.telHome = telHome;
     }
 
+    /**
+     * Get the mobile phone number of an employee
+     * @return Home phone number of the employee
+     */
     public String getTelMob() {
         return telMob;
     }
 
+    /**
+     * Set the mobile phone number of an employee
+     * @param telMob
+     */
     public void setTelMob(String telMob) {
         this.telMob = telMob;
     }
 
+    /**
+     * Get the professional phone number of an employee
+     * @return Home phone number of the employee
+     */
     public String getTelPro() {
         return telPro;
     }
 
+    /**
+     * Set the professional phone number of an employee
+     * @param telPro
+     */
     public void setTelPro(String telPro) {
         this.telPro = telPro;
     }
 
+    /**
+     * Get the address of an employee
+     * @return The address of the employee
+     */
     public String getAdress() {
         return adress;
     }
 
+    /**
+     * Set the address of an employee
+     * @param adress
+     */
     public void setAdress(String adress) {
         this.adress = adress;
     }
 
+    /**
+     * Get the zip or postal code of an employee
+     * @return The zip code of the employee
+     */
     public String getPostalCode() {
         return postalCode;
     }
 
+    /**
+     * Set the zip or postal code of an employee
+     * @param postalCode
+     */
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
+    /**
+     * Get the city of an employee
+     * @return The city of the employee
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * Set the city of an employee
+     * @param city
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     * Get the email address of an employee
+     * @return The email address of the employee
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Set the email address of an employee
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
