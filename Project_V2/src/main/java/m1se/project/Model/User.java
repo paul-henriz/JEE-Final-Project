@@ -62,13 +62,28 @@ public class User implements Serializable {
     @Column(name = "IsAdmin")
     private boolean isAdmin;
 
+    /**
+     * Empty constructor
+     */
     public User() {
     }
 
+    /**
+     * Constructor with id
+     * @param id
+     * The id of the user
+     */
     public User(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Full constructor
+     * @param id
+     * @param login
+     * @param password
+     * @param isAdmin
+     */
     public User(Integer id, String login, String password, boolean isAdmin) {
         this.id = id;
         this.login = login;
@@ -76,34 +91,67 @@ public class User implements Serializable {
         this.isAdmin = isAdmin;
     }
 
+    /**
+     * Get the id of an user
+     * @return
+     * The id of the user as an integer
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Set the id of an user
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
+    /**
+     * Get the login of an user
+     * @return The login of the user
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Set the login of an user
+     * @param login
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * Get the password of an user
+     * @return The password of the user
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Set the password of an user
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Get the status of an user (true if admin)
+     * @return The status of the user
+     */
     public boolean getIsAdmin() {
         return isAdmin;
     }
 
+    /**
+     * Set the status of an user
+     * @param isAdmin
+     */
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
@@ -122,10 +170,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
