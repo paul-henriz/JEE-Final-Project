@@ -5,7 +5,6 @@
  */
 package m1se.project.Model;
 
-import java.util.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,14 +17,23 @@ import static org.junit.Assert.*;
 public class LogTest {
     Log instance;
     
+    /**
+     * Constructor without parameter
+     */
     public LogTest() {
     }
     
+    /**
+     * Initialize the global variable with an empty log
+     */
     @Before
     public void setUp(){
         instance = new Log();
     }
     
+    /**
+     * Set to null the instance (free the memory)
+     */
     @After
     public void tearDown() {
         instance = null;

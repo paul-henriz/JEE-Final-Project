@@ -23,6 +23,11 @@ public class UserSB {
     
     ArrayList<User> listUsers;
     
+    /**
+     * Get the list of all user in the database
+     * @return
+     * The list of all user
+     */
     public ArrayList<User> getUsers(){
         listUsers = new ArrayList<>();
         Query q = em.createNamedQuery("User.findAll");
@@ -30,6 +35,12 @@ public class UserSB {
         return listUsers;
     }
     
+    /**
+     * Check in the database if there is a matching combinaison of user and password
+     * @param input The user input to check
+     * @return
+     * Boolean if the input is valid (true) or not
+     */
     public Boolean validateCredentials(User input){
         boolean result = false;
         listUsers = getUsers();

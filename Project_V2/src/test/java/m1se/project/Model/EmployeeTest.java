@@ -18,14 +18,23 @@ public class EmployeeTest {
     
     Employee instance;
     
+    /**
+     * Constructor without parameter
+     */
     public EmployeeTest() {
     }
     
+    /**
+     * Initialize the global variable with an empty employee
+     */
     @Before
     public void setUp() {
         instance = new Employee(null, "", "", "", "", "", "", "", "", "");
     }
     
+    /**
+     * Set to null the instance (free the memory)
+     */
     @After
     public void tearDown() {
         instance = null;
