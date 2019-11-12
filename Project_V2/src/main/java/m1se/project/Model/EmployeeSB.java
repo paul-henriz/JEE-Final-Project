@@ -23,6 +23,11 @@ public class EmployeeSB {
     
     ArrayList<Employee> listEmployees;
     
+    /**
+     * Get the list of all employees
+     * @return
+     * The list of all employees
+     */
     public ArrayList<Employee> getEmployees(){
         listEmployees = new ArrayList<>();
         Query q = em.createNamedQuery("Employee.findAll");
@@ -30,21 +35,40 @@ public class EmployeeSB {
         return listEmployees;
     }
     
+    /**
+     * Get an employee by its ID
+     * @param ID
+     * @return
+     * The employee corresponding to the id
+     */
     public Employee getEmployeeByID(String ID){
         Query q = em.createNamedQuery("Employee.findById");
         q.setParameter("id", Integer.parseInt(ID));
         return (Employee) q.getSingleResult();
     }
     
+    /**
+     * Delete an employee from its id
+     * @param ID
+     */
     public void deleteEmployeeByID(String ID){
         Query q = em.createNamedQuery("Employee.deleteById");
         q.setParameter("id", Integer.parseInt(ID));
         q.executeUpdate();
     }
     
+    /**
+     * Save (an new employee) into the database
+     * @param emp
+     */
     public void saveEmployee(Employee emp){
         em.persist(emp);
     }
+
+    /**
+     * Update (an existing employee) into the database
+     * @param emp
+     */
     public void updateEmployee(Employee emp){
         em.merge(emp);
     }
