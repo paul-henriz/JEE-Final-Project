@@ -29,60 +29,62 @@
             <h1 class="navbar-brand ">Hello <b>${u.login}</b> ! Your session is active</h1>
             <a href="?action=logout" class="logout"><i class="fas fa-power-off"></i></a>
         </nav>
-          
-        
+
+
         <c:choose>
-        <c:when test="${fn:length(employeesList) > 0}">
-        <form method="POST" action="Controller">
-            <div class="tabCenter">
-            <table border = 1 class="table table-striped tSize">
-                <thead>
-                    <tr>
-                        <th scope="col">Sel</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col" class="remove">Home phone</th>
-                        <th scope="col" class="remove">Mobile phone</th>
-                        <th scope="col" class="remove">Office phone</th>
-                        <th scope="col" class="remove">Adress</th>
-                        <th scope="col" class="remove">Postal Code</th>
-                        <th scope="col" class="remove">City</th>
-                        <th scope="col" class="remove">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${employeesList}" var="emp">
-                        <tr>
-                            <th scope="row"><input type="radio" name="id" value="${emp.id}" checked ></th>
-                            <td>${emp.name}</td>
-                            <td>${emp.firstName}</td>
-                            <td class="remove">${emp.telHome}</td>
-                            <td class="remove">${emp.telMob}</td>
-                            <td class="remove">${emp.telPro}</td>
-                            <td class="remove">${emp.adress}</td>
-                            <td class="remove">${emp.postalCode}</td>
-                            <td class="remove">${emp.city}</td>
-                            <td class="remove">${emp.email}</td>
-                        </tr>
-                    </c:forEach>    
-                </tbody>
-                </table>
-                <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
-                <button class="btn btn-secondary float-right" type='submit' name="action" value="details">Details</button>
-                <c:if test="${u.isAdmin eq true}">
-                    <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
-                </c:if>
-            </div>
-            </c:when>
-            <c:otherwise>
-                <div class="logout_page">
-                    <h1>There is no Employees in database</h1>
-                    <form method="POST" action="Controller">
-                    <c:if test="${u.isAdmin eq true}">
-                    <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
-                </c:if>
-                </div>
-            </c:otherwise>
+            <c:when test="${fn:length(employeesList) > 0}">
+                <form method="POST" action="Controller">
+                    <div class="tabCenter">
+                        <table border = 1 class="table table-striped tSize">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sel</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col" class="remove">Home phone</th>
+                                    <th scope="col" class="remove">Mobile phone</th>
+                                    <th scope="col" class="remove">Office phone</th>
+                                    <th scope="col" class="remove">Adress</th>
+                                    <th scope="col" class="remove">Postal Code</th>
+                                    <th scope="col" class="remove">City</th>
+                                    <th scope="col" class="remove">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${employeesList}" var="emp">
+                                    <tr>
+                                        <th scope="row"><input type="radio" name="id" value="${emp.id}" checked ></th>
+                                        <td>${emp.name}</td>
+                                        <td>${emp.firstName}</td>
+                                        <td class="remove">${emp.telHome}</td>
+                                        <td class="remove">${emp.telMob}</td>
+                                        <td class="remove">${emp.telPro}</td>
+                                        <td class="remove">${emp.adress}</td>
+                                        <td class="remove">${emp.postalCode}</td>
+                                        <td class="remove">${emp.city}</td>
+                                        <td class="remove">${emp.email}</td>
+                                    </tr>
+                                </c:forEach>    
+                            </tbody>
+                        </table>
+                        <c:if test="${u.isAdmin eq true}">
+                            <button class="btn btn-primary float-right" type='submit' name="action" value="delete">Delete</button>
+                        </c:if>
+                        <button class="btn btn-secondary float-right" type='submit' name="action" value="details">Details</button>
+                        <c:if test="${u.isAdmin eq true}">
+                            <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
+                        </c:if>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="logout_page">
+                        <h1>There is no Employees in database</h1>
+                        <form method="POST" action="Controller">
+                            <c:if test="${u.isAdmin eq true}">
+                                <button class="btn btn-danger float-right" type='submit' name="action" value="add">Add</button>
+                            </c:if>
+                    </div>
+                </c:otherwise>
             </c:choose>
     </body>
 </html>
