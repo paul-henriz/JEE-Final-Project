@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -44,6 +45,7 @@ public class UserSB {
     public Boolean validateCredentials(User input){
         boolean result = false;
         listUsers = getUsers();
+        input.setPassword(hashPassword(input.getPassword()));
         for (User u : listUsers) {
             if (u.getLogin().equals(input.getLogin()) && u.getPassword().equals(input.getPassword())) {
                 input.setId(u.getId());
@@ -52,5 +54,8 @@ public class UserSB {
             }
         }
         return result;
+    }
+    public String hashPassword(String password){
+        return DigestUtils.sha1Hex(password);
     }
 }
