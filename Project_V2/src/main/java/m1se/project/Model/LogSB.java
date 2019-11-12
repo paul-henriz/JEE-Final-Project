@@ -21,6 +21,12 @@ public class LogSB {
     @PersistenceContext
     EntityManager em;
     
+    /**
+     * Add a log entry to the database
+     * @param u The user associate to the action
+     * @param ip The ip address of the user
+     * @param action The action executed
+     */
     public void addLog(User u, String ip, String action){
         Log l = new Log();
         l.setUser(u);
