@@ -77,6 +77,6 @@ b) The architecture (M.V.C pattern, any suprise(s)?, where is located the remote
 
 ### Version 3
 
-- [ ] Use RESTful Web services
+- [x] Use RESTful Web services (Partial)
 - [x] DBMS : A remote solution
 - [x] Code quality: use Sonarqube & JUnit (Partial: only JUnit tests)
