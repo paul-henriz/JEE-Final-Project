@@ -25,7 +25,7 @@ import m1se.project.Model.User;
  * @author paul-henrizimmerlin
  */
 @Stateless
-@Path("m1se.project.model.user")
+@Path("user")
 public class UserFacadeREST extends AbstractFacade<User> {
 
     @PersistenceContext(unitName = "m1se_Project_V2_war_1.0PU")

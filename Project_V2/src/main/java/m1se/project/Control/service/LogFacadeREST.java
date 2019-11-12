@@ -25,7 +25,7 @@ import m1se.project.Model.Log;
  * @author paul-henrizimmerlin
  */
 @Stateless
-@Path("m1se.project.model.log")
+@Path("log")
 public class LogFacadeREST extends AbstractFacade<Log> {
 
     @PersistenceContext(unitName = "m1se_Project_V2_war_1.0PU")
