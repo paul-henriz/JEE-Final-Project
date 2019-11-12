@@ -12,6 +12,15 @@ IDE used to develop: NetBeans 8.1/8.2
 
 [![Build Status](https://dev.azure.com/paul-henrizimmerlin/JEE-EFREI/_apis/build/status/spirou1997.JEE-Final-Project?branchName=master)](https://dev.azure.com/paul-henrizimmerlin/JEE-EFREI/_build/latest?definitionId=4&branchName=master)
 
+Delivered:
+- Full V1 version
+- Full V2 version
+- Partial V3
+    - JUnit test are partially implemented
+    - We use a remote database (hosting in dedicated server on Online.net (by Scaleway))
+    - We have implemented the REST API, but it's not used by JSPs
+
+
 Presentation:
 Each group 10 (presentation) + 10 (Q&A) min
 Starting at 8:05
