@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `City` varchar(25) NOT NULL,
   `Email` varchar(40) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `employees`
@@ -63,11 +63,11 @@ CREATE TABLE IF NOT EXISTS `employees` (
 
 INSERT INTO `employees` (`ID`, `Name`, `FirstName`, `TelHome`, `TelMob`, `TelPro`, `Adress`, `PostalCode`, `City`, `Email`) VALUES
 (1, 'Simpson', 'Homer', '0123456789', '0612345678', '0698765432', '2 avenue Duff', '92700', 'Colombes', 'hsimpson@gmail.com'),
-(3, 'Simpson', 'Bart', '0145362787', '0645362718', '0611563477', '10 rue des Rebelles', '92270', 'Bois-colombes', 'bsimpson@gmail.com'),
-(4, 'Lagaffe', 'Gaston', '0187665987', '0623334256', '0654778654', '65 rue de la Paresse', '92700', 'Colombes', 'glagaffe@yahoo.fr'),
-(5, 'Mafalda', 'Querida', '0187611987', '0783334256', '0658878654', '6 rue de Buenos Aires', '75016', 'Paris', 'qmafalda@hotmail.ar'),
-(6, 'Woodpecker', 'Woody', '0187384987', '0622494256', '0674178654', '5 bvd des Picoreurs', '21000', 'Dijon', 'woody@mail.co.uk'),
-(7, 'Brow', 'Charlie', '0122456678', '0699854673', '0623445166', '140 avenue Foche', '90000', 'Nanterre', 'cbrown@live.com');
+(2, 'Simpson', 'Bart', '0145362787', '0645362718', '0611563477', '10 rue des Rebelles', '92270', 'Bois-colombes', 'bsimpson@gmail.com'),
+(3, 'Lagaffe', 'Gaston', '0187665987', '0623334256', '0654778654', '65 rue de la Paresse', '92700', 'Colombes', 'glagaffe@yahoo.fr'),
+(4, 'Mafalda', 'Querida', '0187611987', '0783334256', '0658878654', '6 rue de Buenos Aires', '75016', 'Paris', 'qmafalda@hotmail.ar'),
+(5, 'Woodpecker', 'Woody', '0187384987', '0622494256', '0674178654', '5 bvd des Picoreurs', '21000', 'Dijon', 'woody@mail.co.uk'),
+(6, 'Brow', 'Charlie', '0122456678', '0699854673', '0623445166', '140 avenue Foche', '90000', 'Nanterre', 'cbrown@live.com');
 
 -- --------------------------------------------------------
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `ip` varchar(15) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user` (`user`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `history`
@@ -99,7 +99,9 @@ INSERT INTO `history` (`id`, `date`, `user`, `action`, `ip`) VALUES
 (8, '2019-11-10 18:57:31', 1, 'delete', '0:0:0:0:0:0:0:1'),
 (9, '2019-11-10 18:58:37', 1, 'login', '0:0:0:0:0:0:0:1'),
 (10, '2019-11-10 18:58:53', 2, 'login', '0:0:0:0:0:0:0:1'),
-(11, '2019-11-12 07:35:36', 1, 'login', '0:0:0:0:0:0:0:1');
+(11, '2019-11-12 07:35:36', 1, 'login', '0:0:0:0:0:0:0:1'),
+(12, '2019-11-12 08:42:51', 2, 'login', '0:0:0:0:0:0:0:1'),
+(13, '2019-11-12 08:43:04', 1, 'login', '0:0:0:0:0:0:0:1');
 
 --
 -- Contraintes pour les tables déchargées
