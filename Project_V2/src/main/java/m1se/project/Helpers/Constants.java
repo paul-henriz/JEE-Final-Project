@@ -85,17 +85,64 @@ public class Constants {
      * Name of the home phone number
      */
     public static final String FRM_TELDOM_FIELD = "teldom";
+
+    /**
+     * Name of the address field
+     */
     public static final String FRM_ADDRESS_FIELD = "address";
+
+    /**
+     * Name of the city field
+     */
     public static final String FRM_CITY_FIELD = "city";
+
+    /**
+     * Name of the zip or postal code field
+     */
     public static final String FRM_ZIP_FIELD = "zip";
+
+    /**
+     * Name of the email field
+     */
     public static final String FRM_EMAIL_FIELD = "email";
     
+    /**
+     * Name of the login action
+     */
     public static final String FRM_ACTION_LOGIN = "login";
+
+    /**
+     * Name of the delete action
+     */
     public static final String FRM_ACTION_DELETE = "delete";
+
+    /**
+     * Name of the details action
+     */
     public static final String FRM_ACTION_DETAIL = "details";
+
+    /**
+     * Name of the add action
+     */
     public static final String FRM_ACTION_ADD = "add";
+
+    /**
+     * Name of the save action
+     */
     public static final String FRM_ACTION_SAVE = "save";
+
+    /**
+     * Name of the create action
+     */
     public static final String FRM_ACTION_CREATE = "create";
+
+    /**
+     * Name of the cancel action
+     */
     public static final String FRM_ACTION_CANCEL = "cancel";
+
+    /**
+     * Name of the logout action
+     */
     public static final String FRM_ACTION_LOGOUT = "logout";
 }
