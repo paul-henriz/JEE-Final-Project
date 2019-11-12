@@ -4,6 +4,7 @@ This is the repository of our final project of JEE (Efrei M1 Software Engineerin
 
 ## Informations
 
+Group 5
 Developers: [Nicolas GUIBERT](https://github.com/GuibertNicolas) & [Paul-Henri ZIMMERLIN](https://github.com/spirou1997)
 
 IDE used to develop: NetBeans 8.1/8.2
@@ -11,6 +12,17 @@ IDE used to develop: NetBeans 8.1/8.2
 
 [![Build Status](https://dev.azure.com/paul-henrizimmerlin/JEE-EFREI/_apis/build/status/spirou1997.JEE-Final-Project?branchName=master)](https://dev.azure.com/paul-henrizimmerlin/JEE-EFREI/_build/latest?definitionId=4&branchName=master)
 
+Presentation:
+Each group 10 (presentation) + 10 (Q&A) min
+Starting at 8:05
+No sequence
+
+Plan:
+1. Make a dynamic original presentation of your project
+a) The structure (packages, special files, ...)
+b) The architecture (M.V.C pattern, any suprise(s)?, where is located the remote db, remote deployment ...)
+2. What did you learn from/while doing this project? (Unique servlet architecture ...)
+3. What is the most difficult aspect of the project?
 
 ## To-do
 
