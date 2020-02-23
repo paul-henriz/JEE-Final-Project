@@ -5,7 +5,7 @@ This is the repository of our final project of JEE (Efrei M1 Software Engineerin
 ## Informations
 
 Group 5
-Developers: [Nicolas GUIBERT](https://github.com/GuibertNicolas) & [Paul-Henri ZIMMERLIN](https://github.com/spirou1997)
+Developers: [Nicolas GUIBERT](https://github.com/GuibertNicolas) & [Paul-Henri ZIMMERLIN](https://github.com/paul-henriz)
 
 IDE used to develop: NetBeans 8.1/8.2
 
